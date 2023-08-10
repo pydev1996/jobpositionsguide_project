@@ -20,6 +20,7 @@ class JobPosition(models.Model):
         ('BPO', 'BPO'),
         ('Construction Field', 'Construction Field'),
         ('Mechanical', 'Mechanical'),
+         ('Farming', 'Farming'),
         # Add more categories as needed
     ]
 

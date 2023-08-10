@@ -11,13 +11,6 @@
             padding: 0;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px;
-            text-align: center;
-        }
-
         .logo img {
             max-width: 180px;
             height: auto;
@@ -27,6 +20,8 @@
             font-size: 36px;
             margin-bottom: 40px;
             color: #333;
+            text-align: center;
+            padding: 40px 0;
         }
 
         .category-buttons {
@@ -34,6 +29,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
+            padding-bottom: 40px;
         }
 
         .category-btn {
@@ -53,18 +49,42 @@
 
         /* Custom styles for the banner */
         .carousel-inner img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
+            background-color: rgba(0, 0, 0, 0.7);
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    /* Banner captions */
+    .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .carousel-caption h3 {
+        font-size: 24px;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+
+    .carousel-caption p {
+        font-size: 18px;
+        color: #fff;
+    }
+
         .blog-box {
-            margin-top: 40px;
             padding: 20px;
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
             text-align: left;
+            margin: 40px;
         }
 
         .blog-title {
@@ -77,10 +97,10 @@
             font-size: 16px;
             color: #666;
         }
+
         /* Custom styles for About and Contact sections */
         .about-contact-section {
-            background-color: #494949;
-            margin-top: 40px;
+            background-color: #363636;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
@@ -88,18 +108,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin: 40px;
         }
 
         .about-section {
             flex: 1;
             padding: 20px;
-            /* Change the background color for the About section */
+            background-color: #363636;
         }
 
         .contact-section {
             flex: 1;
             padding: 20px;
-            /* Change the background color for the Contact section */
+            background-color: #363636;
         }
 
         .about-title, .contact-title {
@@ -116,66 +137,77 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">
-            <img src="/static/images/logo3.png" alt="Logo">
-        </div>
-        
-        
-        
-        <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/static/images/banner1.jpg" class="d-block w-100" alt="Banner 1">
+    <div class="logo">
+        <img src="/static/images/logo3.png" alt="Logo">
+    </div>
+
+    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/static/images/banner1.jpg" class="d-block w-100" alt="Banner 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 class="text-white">Find Your Dream Job</h3>
+                    <p>Explore a wide range of job positions in various categories.</p>
                 </div>
-                <div class="carousel-item">
-                    <img src="/static/images/banner2.jpg" class="d-block w-100" alt="Banner 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="/static/images/banner3.jpg" class="d-block w-100" alt="Banner 2">
-                </div>
-                <!-- Add more carousel items with images as needed -->
             </div>
+            <div class="carousel-item">
+                <img src="/static/images/banner2.jpg" class="d-block w-100" alt="Banner 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 class="text-white">Join Our Growing Community</h3>
+                    <p>Connect with employers and fellow job seekers.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/static/images/banner3.jpg" class="d-block w-100" alt="Banner 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 class="text-white">Advance Your Career</h3>
+                    <p>Discover new opportunities and take your career to the next level.</p>
+                </div>
+            </div>
+            <!-- Add more carousel items with images as needed -->
         </div>
-        <br>
-        <h1 class="category-title">Choose a Category</h1>
-        <div class="category-buttons">
-            <a class="btn category-btn" href="{% url 'job_category' 'IT' %}">IT</a>
-            <a class="btn category-btn" href="{% url 'job_category' 'Medical' %}">Medical</a>
-            <a class="btn category-btn" href="{% url 'job_category' 'Electrical' %}">Electrical</a>
-            <a class="btn category-btn" href="{% url 'job_category' 'Electronics' %}">Electronics</a>
-            <a class="btn category-btn" href="{% url 'job_category' 'BPO' %}">BPO</a>
-            <a class="btn category-btn" href="{% url 'job_category' 'Construction Field' %}">Construction Field</a>
-            <a class="btn category-btn" href="{% url 'job_category' 'Mechanical' %}">Mechanical</a>
-        </div>
-        <div class="blog-box">
-            <h2 class="blog-title">Latest Blog Post</h2>
-            <p class="blog-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tristique, mauris a porttitor viverra, ex odio vulputate justo, eu lacinia est neque sit amet libero. Sed mattis in ligula id efficitur.
+    </div>
+
+    <h1 class="category-title">Choose a Category</h1>
+
+    <div class="category-buttons">
+        <a class="btn category-btn" href="{% url 'job_category' 'IT' %}">IT</a>
+        <a class="btn category-btn" href="{% url 'job_category' 'Medical' %}">Medical</a>
+        <a class="btn category-btn" href="{% url 'job_category' 'Electrical' %}">Electrical</a>
+        <a class="btn category-btn" href="{% url 'job_category' 'Electronics' %}">Electronics</a>
+        <a class="btn category-btn" href="{% url 'job_category' 'BPO' %}">BPO</a>
+        <a class="btn category-btn" href="{% url 'job_category' 'Construction Field' %}">Construction Field</a>
+        <a class="btn category-btn" href="{% url 'job_category' 'Mechanical' %}">Mechanical</a>
+       
+    </div>
+
+    <div class="blog-box">
+        <h2 class="blog-title">Latest Blog Post</h2>
+        <p class="blog-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tristique, mauris a porttitor viverra, ex odio vulputate justo, eu lacinia est neque sit amet libero. Sed mattis in ligula id efficitur.
+        </p>
+        <p class="blog-content">
+            Ut a dui eget augue luctus egestas. Maecenas at dictum lorem. Sed eu tristique elit, ac interdum velit. Fusce vulputate, est nec feugiat eleifend, nulla ligula luctus urna, sit amet blandit justo purus in lorem.
+        </p>
+    </div>
+
+    <!-- About and Contact Section -->
+    <div class="about-contact-section">
+        <div class="about-section">
+            <h2 class="about-title">About Us</h2>
+            <p class="about-content">
+                We are a leading job portal dedicated to connecting job seekers with their dream positions. Our mission is to make the job search process efficient and hassle-free.
             </p>
-            <p class="blog-content">
-                Ut a dui eget augue luctus egestas. Maecenas at dictum lorem. Sed eu tristique elit, ac interdum velit. Fusce vulputate, est nec feugiat eleifend, nulla ligula luctus urna, sit amet blandit justo purus in lorem.
+        </div>
+        <div class="contact-section">
+            <h2 class="contact-title">Contact Us</h2>
+            <p class="contact-content">
+                If you have any inquiries or need assistance, feel free to reach out to us at contact@example.com or give us a call at +123-456-7890.
             </p>
         </div>
-        <!-- About and Contact Section -->
-        <div class="about-contact-section">
-            <div class="about-section">
-                <h2 class="about-title">About Us</h2>
-                <p class="about-content">
-                    We are a leading job portal dedicated to connecting job seekers with their dream positions. Our mission is to make the job search process efficient and hassle-free.
-                </p>
-            </div>
-            <div class="contact-section">
-                <h2 class="contact-title">Contact Us</h2>
-                <p class="contact-content">
-                    If you have any inquiries or need assistance, feel free to reach out to us at contact@example.com or give us a call at +123-456-7890.
-                </p>
-            </div>
-        </div>
-        
-        
     </div>
     
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
