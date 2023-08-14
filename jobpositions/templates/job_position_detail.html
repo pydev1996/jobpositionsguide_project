@@ -72,7 +72,46 @@
             margin-right: 5px;
         }
 
-        /* Additional styles as needed */
+        select, button {
+            appearance: none;
+            border: none;
+            background: none;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        select::-ms-expand {
+            display: none;
+        }
+
+        /* Styles for the select tag */
+        select#language-select {
+            font-size: 16px;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px 15px;
+            background-color: #fff;
+            width: 150px;
+            margin-right: 10px;
+        }
+
+        /* Styles for the button */
+        button[type="submit"] {
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
 
     </style>
 </head>
