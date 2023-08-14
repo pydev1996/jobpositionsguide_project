@@ -14,14 +14,77 @@ def job_positions_list(request):
         'job_positions': job_positions,
     }
     return render(request, 'home.html', {'job_positions': job_positions})
+from googletrans import Translator, constants
+from pprint import pprint
+# init the Google API translator
+translator = Translator()
 
-
+# translate a spanish text to arabic for instance
+translation = translator.translate("Hola Mundo", dest="hi")
+print(f"{translation.origin} ({translation.src}) --> {translation.text} ({translation.dest})")
+# ... Other imports and code ...
 
 def job_position_detail(request, job_position_id):
+    translator = Translator()
     job_position = get_object_or_404(JobPosition, id=job_position_id)
-    jd=[string.replace('\r', '') for string in job_position.description.split("\n")]
-    skills=[string.replace('\r', '') for string in job_position.skills.split("\n")]
-    return render(request, 'job_position_detail.html', {'job_position': job_position,'jd':jd,'skills':skills})
+   
+    if request.method == 'POST':
+        selected_language = request.POST.get('lang')
+      
+        skills = [string.replace('\r', '') for string in job_position.skills.split("\n")]
+        skill=[]
+        for s in skills:
+            sk=translator.translate(s, dest=selected_language.lower())
+            skill.append(sk.text)
+        description_lines = job_position.description.strip().split('\n')
+
+        questions_and_answers = []
+        current_question = None
+    
+        for line in description_lines:
+            translated_line = translator.translate(line, dest=selected_language.lower())
+            line_text = translated_line.text  # Get the translated text from Translated object
+            if "?" in line_text:
+                current_question = line_text.strip()
+            else:
+                # Otherwise, it's an answer
+                if current_question:
+                    questions_and_answers.append((current_question, line_text.strip()))
+                    current_question = None
+
+        context = {
+            'job_position': job_position,
+            'questions_and_answers': questions_and_answers,
+            'skills': skill,
+            # ...
+        }
+        return render(request, 'job_position_detail.html', context)
+    
+    else:
+        skills = [string.replace('\r', '') for string in job_position.skills.split("\n")]
+        description_lines = job_position.description.strip().split('\n')
+
+        questions_and_answers = []
+        current_question = None
+
+        for line in description_lines:
+            translated_line = translator.translate(line)
+            line_text = translated_line.text  # Get the translated text from Translated object
+            if "?" in line_text:
+                current_question = line_text.strip()
+            else:
+                # Otherwise, it's an answer
+                if current_question:
+                    questions_and_answers.append((current_question, line_text.strip()))
+                    current_question = None
+
+        context = {
+            'job_position': job_position,
+            'questions_and_answers': questions_and_answers,
+            'skills': skills,
+            # ...
+        }
+        return render(request, 'job_position_detail.html', context)
 
 
 
