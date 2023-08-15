@@ -36,6 +36,13 @@ def job_position_detail(request, job_position_id):
         for s in skills:
             sk=translator.translate(s, dest=selected_language.lower())
             skill.append(sk.text)
+        
+        proceedings = [string.replace('\r', '') for string in job_position.proceedings.split("\n")]
+        proceeding=[]
+        for s in proceedings:
+            sk=translator.translate(s, dest=selected_language.lower())
+            proceeding.append(sk.text)
+
         description_lines = job_position.description.strip().split('\n')
 
         questions_and_answers = []
@@ -56,13 +63,17 @@ def job_position_detail(request, job_position_id):
             'job_position': job_position,
             'questions_and_answers': questions_and_answers,
             'skills': skill,
+            'proceedings':proceeding,
             # ...
         }
         return render(request, 'job_position_detail.html', context)
     
     else:
-        skills = [string.replace('\r', '') for string in job_position.skills.split("\n")]
         description_lines = job_position.description.strip().split('\n')
+
+        skills = [string.replace('\r', '') for string in job_position.skills.split("\n")]
+        proceedings = [string.replace('\r', '') for string in job_position.proceedings.split("\n")]
+        
 
         questions_and_answers = []
         current_question = None
@@ -82,6 +93,7 @@ def job_position_detail(request, job_position_id):
             'job_position': job_position,
             'questions_and_answers': questions_and_answers,
             'skills': skills,
+            'proceedings':proceedings,
             # ...
         }
         return render(request, 'job_position_detail.html', context)

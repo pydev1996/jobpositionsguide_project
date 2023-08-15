@@ -27,6 +27,7 @@ class JobPosition(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     skills = models.TextField()
+    proceedings = models.TextField(default="")
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES,default='IT')
 
     def __str__(self):
