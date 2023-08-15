@@ -30,7 +30,9 @@ def job_position_detail(request, job_position_id):
    
     if request.method == 'POST':
         selected_language = request.POST.get('lang')
-      
+        description=translator.translate("Description", dest=selected_language.lower())
+        SkillsYouNeed=translator.translate("Skills You Need!", dest=selected_language.lower())
+        Proceedings=translator.translate("Proceedings", dest=selected_language.lower())
         skills = [string.replace('\r', '') for string in job_position.skills.split("\n")]
         skill=[]
         for s in skills:
@@ -64,11 +66,17 @@ def job_position_detail(request, job_position_id):
             'questions_and_answers': questions_and_answers,
             'skills': skill,
             'proceedings':proceeding,
+            'description':description.text,
+            'SkillsYouNeed':SkillsYouNeed.text,
+            'Proceedings':Proceedings.text,
             # ...
         }
         return render(request, 'job_position_detail.html', context)
     
     else:
+        description=translator.translate("Description")
+        SkillsYouNeed=translator.translate("Skills You Need!")
+        Proceedings=translator.translate("Proceedings")
         description_lines = job_position.description.strip().split('\n')
 
         skills = [string.replace('\r', '') for string in job_position.skills.split("\n")]
@@ -94,6 +102,9 @@ def job_position_detail(request, job_position_id):
             'questions_and_answers': questions_and_answers,
             'skills': skills,
             'proceedings':proceedings,
+            'description':description.text,
+            'SkillsYouNeed':SkillsYouNeed.text,
+            'Proceedings':Proceedings.text,
             # ...
         }
         return render(request, 'job_position_detail.html', context)

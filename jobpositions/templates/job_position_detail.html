@@ -66,7 +66,7 @@
         }
 
         .skills-list li:before {
-            content: "✓ ";
+            content: "☑️";
             color: #007bff;
             font-weight: bold;
             margin-right: 5px;
@@ -137,8 +137,14 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>{{ job_position.title }}</h1>
+            <h1>
+                {% if job_position.title == "python developer" %}
+                    <img src="https://cdn3.emoji.gg/emojis/1850-python-logo.png" width="64px" height="64px" alt="Python_Logo">
+                {% endif %}
+                {{ job_position.title }}
+            </h1>
         </div>
+        
         <div class="section-heading">
             <div class="language-dropdown">
                 <form method="post">
@@ -153,7 +159,7 @@
                     <button type="submit">Change Language</button>
                 </form>
             </div>
-            <h2>Description</h2>
+            <h2>{{description}}</h2>
             <ul class="description-list">
                 {% for question,answer in questions_and_answers %}
                 <li>
@@ -164,7 +170,7 @@
             </ul>
         </div>
         <div class="section-heading">
-            <h2>Skills You Need!</h2>
+            <h2>{{SkillsYouNeed}}</h2>
             <ul class="skills-list">
                 {% for skill in skills %}
                 <li>{{ skill }}</li>
@@ -172,7 +178,7 @@
             </ul>
         </div>
         <div class="section-heading">
-            <h2>Proceedings</h2>
+            <h2>{{Proceedings}}</h2>
             <ul class="proceeding-list">
                 {% for proceeding in proceedings %}
                 <li>{{ proceeding }}</li>
