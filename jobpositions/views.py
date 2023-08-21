@@ -113,6 +113,8 @@ def job_position_detail(request, job_position_id):
 
 def category_buttons(request):
     return render(request, 'category_buttons.html')
+def about(request):
+    return render(request, 'about.html')
 
 def job_positions_by_category(request, category):
     query = request.GET.get('q')
