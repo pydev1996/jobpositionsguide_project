@@ -35,20 +35,20 @@
       <div class="header_section">
          <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="logo"><a href="index.html"><img src="static/images/images/logo1.png"></a></div>
+               <div class="logo"><a href="{% url 'category_buttons' %}"><img src="static/images/images/logo1.png"></a></div>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
                <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav ml-auto">
                      <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="{% url 'category_buttons' %}">Home</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About Us</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="gallery.html">Gallery</a>
+                        <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="services.html">Services</a>
@@ -74,7 +74,7 @@
                      <div class="row">
                         <div class="col-sm-12">
                            <div class="banner_taital">
-                              <h1 class="outstanding_text">Outstanding</h1>
+                              <h1 class="outstanding_text">Vision</h1>
                               <h1 class="coffee_text">Welcome</h1>
                               <p class="there_text">Explore a wide range of job positions in various categories</p>
                               <div class="learnmore_bt"><a href="#">Learn More</a></div>
@@ -86,7 +86,7 @@
                      <div class="row">
                         <div class="col-sm-12">
                            <div class="banner_taital">
-                              <h1 class="outstanding_text">Welcome  </h1>
+                              <h1 class="outstanding_text">Learn </h1>
                               <h1 class="coffee_text">Advance Your Career</h1>
                               <p class="there_text">Discover new opportunities and take your career to the next level.</p>
                               <div class="learnmore_bt"><a href="#">Learn More</a></div>
@@ -98,9 +98,9 @@
                      <div class="row">
                         <div class="col-sm-12">
                            <div class="banner_taital">
-                              <h1 class="outstanding_text">Outstanding </h1>
-                              <h1 class="coffee_text">Coffee Shop</h1>
-                              <p class="there_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, </p>
+                              <h1 class="outstanding_text">Success </h1>
+                              <h1 class="coffee_text">Set Your Goals</h1>
+                              <p class="there_text">Choose your interests or goal for building your careeer! </p>
                               <div class="learnmore_bt"><a href="#">Learn More</a></div>
                            </div>
                         </div>
@@ -126,7 +126,7 @@
                      <div class="about_taital">About Us</div>
                      <p class="about_text">Welcome to CareerPath, your trusted partner in the pursuit of professional success. At CareerPath, we understand that finding the right career path can be a transformative journey, and we are here to guide you every step of the way.</p>
                      <p class="about_text">Our mission is simple: to connect job seekers with their dream positions and make the job search process efficient and hassle-free. We are committed to helping individuals from all backgrounds and experiences find opportunities that align with their skills, passions, and ambitions.</p>
-                     <div class="read_bt"><a href="#">Read More</a></div>
+                     <!-- <div class="read_bt"><a href="#">Read More</a></div> -->
                   </div>
                </div>
                <div class="col-md-6">
@@ -193,8 +193,8 @@
                            <img src="static/images/images/icon1.png" class="image_1">
                            <img src="static/images/images/icon1.png" class="image_2">
                         </div>
-                        <h3 class="decorate_text">Total Job Types in IT</h3>
-                        <p class="tation_text">Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea </p>
+                        <h3 class="decorate_text">Total Job Types in  IT</h3>
+                        <p class="tation_text">{{category_counts_dict_IT}} </p>
                         <div class="readmore_bt"><a href="#">Read More</a></div>
                      </div>
                   </div>
@@ -204,8 +204,8 @@
                            <img src="static/images/images/mechanic.png" class="image_1">
                            <img src="static/images/images/mechanic.png" class="image_2">
                         </div>
-                        <h3 class="decorate_text">Total Job Types in Mechanical</h3>
-                        <p class="tation_text">Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea </p>
+                        <h3 class="decorate_text">Total Job Types in MECHANICAL</h3>
+                        <p class="tation_text"> {{category_counts_dict_MEC}} </p>
                         <div class="readmore_bt"><a href="#">Read More</a></div>
                      </div>
                   </div>
@@ -215,8 +215,8 @@
                            <img src="static/images/images/electrical.png" class="image_1">
                            <img src="static/images/images/electrical.png" class="image_2">
                         </div>
-                        <h3 class="decorate_text">Total Job Types in Electricals</h3>
-                        <p class="tation_text">Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea </p>
+                        <h3 class="decorate_text">Total Job Types in MEDICAL</h3>
+                        <p class="tation_text">{{category_counts_dict_MEDICAL}}</p>
                         <div class="readmore_bt"><a href="#">Read More</a></div>
                      </div>
                   </div>

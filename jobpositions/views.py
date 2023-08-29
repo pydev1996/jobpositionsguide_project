@@ -110,11 +110,28 @@ def job_position_detail(request, job_position_id):
         return render(request, 'job_position_detail.html', context)
 
 
+from django.db.models import Count
+
+
 
 def category_buttons(request):
-    return render(request, 'category_buttons.html')
+    category_counts = JobPosition.objects.values('category').annotate(position_count=Count('id'))
+
+    category_counts = JobPosition.objects.values('category').annotate(position_count=Count('id'))
+
+    category_counts_dict = {category['category']: category['position_count'] for category in category_counts}
+    context={
+        "category_counts_dict_IT":category_counts_dict['IT'],
+        "category_counts_dict_MEDICAL":category_counts_dict['Medical'],
+        "category_counts_dict_MEC":category_counts_dict['Mechanical'],
+
+        }
+    #print(category_counts_dict)
+    return render(request, 'category_buttons.html',context)
 def about(request):
     return render(request, 'about.html')
+def gallery(request):
+    return render(request, 'gallery.html')
 
 def job_positions_by_category(request, category):
     query = request.GET.get('q')
