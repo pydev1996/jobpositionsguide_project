@@ -119,20 +119,35 @@ def category_buttons(request):
 
     category_counts = JobPosition.objects.values('category').annotate(position_count=Count('id'))
 
-    category_counts_dict = {category['category']: category['position_count'] for category in category_counts}
-    context={
-        "category_counts_dict_IT":category_counts_dict['IT'],
-        "category_counts_dict_MEDICAL":category_counts_dict['Medical'],
-        "category_counts_dict_MEC":category_counts_dict['Mechanical'],
+    # Create a dictionary to store the category counts
+    category_counts_dict = [item['position_count'] for item in category_counts]
 
-        }
+    # Now you have the category counts as a dictionary
+    print(sum(category_counts_dict))
+    context={
+        "total_category":str(sum(category_counts_dict))
+    }
     #print(category_counts_dict)
     return render(request, 'category_buttons.html',context)
 def about(request):
     return render(request, 'about.html')
 def gallery(request):
     return render(request, 'gallery.html')
+def contact(request):
+    return render(request, 'contact.html')
+def search(request):
+    query = request.GET.get('q')
+    #job_positions = JobPosition.objects.all
 
+    if query:
+        job_positions = JobPosition.objects.filter(title__icontains=query)
+    else:
+        job_positions = JobPosition.objects.all()
+
+    context = {
+        'job_positions': job_positions,
+    }
+    return render(request, 'search.html',context)
 def job_positions_by_category(request, category):
     query = request.GET.get('q')
     job_positions = JobPosition.objects.filter(category=category)

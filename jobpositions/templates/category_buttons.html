@@ -48,16 +48,16 @@
                         <a class="nav-link" href="{% url 'about' %}">About Us</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
+                        <a class="nav-link" href="{% url 'gallery' %}">Category</a>
                      </li>
-                     <li class="nav-item">
+                     <!-- <li class="nav-item">
                         <a class="nav-link" href="services.html">Services</a>
+                     </li> -->
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        <a class="nav-link" href="{% url 'search' %}"><i class="fa fa-search" aria-hidden="true"></i></a>
                      </li>
                   </ul>
                </div>
@@ -193,8 +193,8 @@
                            <img src="static/images/images/icon1.png" class="image_1">
                            <img src="static/images/images/icon1.png" class="image_2">
                         </div>
-                        <h3 class="decorate_text">Total Job Types in  IT</h3>
-                        <p class="tation_text">{{category_counts_dict_IT}} </p>
+                        <h3 class="decorate_text">Check Interest</h3>
+                        <p class="tation_text">Choose your interest of Skills you need</p>
                         <div class="readmore_bt"><a href="#">Read More</a></div>
                      </div>
                   </div>
@@ -204,8 +204,8 @@
                            <img src="static/images/images/mechanic.png" class="image_1">
                            <img src="static/images/images/mechanic.png" class="image_2">
                         </div>
-                        <h3 class="decorate_text">Total Job Types in MECHANICAL</h3>
-                        <p class="tation_text"> {{category_counts_dict_MEC}} </p>
+                        <h3 class="decorate_text">Total Number of Categories</h3>
+                        <p class="tation_text"> We Providing {{total_category}} types Categories </p>
                         <div class="readmore_bt"><a href="#">Read More</a></div>
                      </div>
                   </div>
@@ -215,11 +215,12 @@
                            <img src="static/images/images/electrical.png" class="image_1">
                            <img src="static/images/images/electrical.png" class="image_2">
                         </div>
-                        <h3 class="decorate_text">Total Job Types in MEDICAL</h3>
-                        <p class="tation_text">{{category_counts_dict_MEDICAL}}</p>
+                        <h3 class="decorate_text">Job Positions</h3>
+                        <p class="tation_text">Each Category have multiple categories</p>
                         <div class="readmore_bt"><a href="#">Read More</a></div>
                      </div>
                   </div>
+                 
                </div>
             </div>
          </div>
@@ -336,7 +337,7 @@
             <div class="row">
                <div class="col-lg-3 col-sm-6">
                   <h3 class="useful_text">About</h3>
-                  <p class="footer_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation u</p>
+                  <p class="footer_text">We have to build a path to give some information about the positions of various sectors.Its easy to you find out what skills you need to learn and which position is best for you to develop your Career!</p>
                </div>
                <div class="col-lg-3 col-sm-6">
                   <h3 class="useful_text">Menu</h3>

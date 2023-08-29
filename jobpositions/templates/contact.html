@@ -14,47 +14,47 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="/static/images/css/bootstrap.min.css">
       <!-- style css -->
-      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <link rel="stylesheet" type="text/css" href="/static/images/css/style.css">
       <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
+      <link rel="stylesheet" href="/static/images/css/responsive.css">
       <!-- fevicon -->
-      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <link rel="icon" href="/static/images/images/fevicon.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <link rel="stylesheet" href="/static/images/css/jquery.mCustomScrollbar.min.css">
       <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="/https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <!-- owl stylesheets --> 
-      <link rel="stylesheet" href="css/owl.carousel.min.css">
-      <link rel="stylesheet" href="css/owl.theme.default.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <link rel="stylesheet" href="/static/images/css/owl.carousel.min.css">
+      <link rel="stylesheet" href="/static/images/css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="/static/images/https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
    </head>
    <body>
       <!--header section start -->
       <div class="header_section">
          <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>
+               <div class="logo"><a href="index.html"><img src="/static/images/images/logo1.png"></a></div>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
                <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav ml-auto">
                      <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="{% url 'category_buttons' %}">Home</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
+                        <a class="nav-link" href="{% url 'about' %}">About Us</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="gallery.html">Gallery</a>
+                        <a class="nav-link" href="{% url 'gallery' %}">Category</a>
                      </li>
-                     <li class="nav-item">
+                     <!-- <li class="nav-item">
                         <a class="nav-link" href="services.html">Services</a>
-                     </li>
+                     </li> -->
                      <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
@@ -84,7 +84,7 @@
                            <input type="text" class="email-bt" placeholder="Email" name="Email">
                         </div>
                         <div class="form-group">
-                           <input type="text" class="email-bt" placeholder="Phone Numbar" name="Email">
+                           <input type="text" class="email-bt" placeholder="Phone Number" name="Email">
                         </div>
                         <div class="form-group">
                            <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
@@ -96,10 +96,13 @@
                   </div>
                </div>
                <div class="col-md-6 padding_0">
+                  <div class="about_img"><img src="/static/images/images/img-9-1.png"></div>
+               </div>
+               <!-- <div class="col-md-6 padding_0">
                   <div class="map-responsive">
                      <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France" width="600" height="508" frameborder="0" style="border:0; width: 100%;" allowfullscreen></iframe>
                   </div>
-               </div>
+               </div> -->
             </div>
          </div>
       </div>
@@ -109,7 +112,7 @@
             <div class="row">
                <div class="col-lg-3 col-sm-6">
                   <h3 class="useful_text">About</h3>
-                  <p class="footer_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation u</p>
+                  <p class="footer_text">We have to build a path to give some information about the positions of various sectors.Its easy to you find out what skills you need to learn and which position is best for you to develop your Career!</p>
                </div>
                <div class="col-lg-3 col-sm-6">
                   <h3 class="useful_text">Menu</h3>
@@ -161,13 +164,13 @@
       </div>
       <!-- copyright section end -->
       <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/plugin.js"></script>
+      <script src="/static/images/js/jquery.min.js"></script>
+      <script src="/static/images/js/popper.min.js"></script>
+      <script src="/static/images/js/bootstrap.bundle.min.js"></script>
+      <script src="/static/images/js/jquery-3.0.0.min.js"></script>
+      <script src="/static/images/js/plugin.js"></script>
       <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>     
+      <script src="/static/images/js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="/static/images/js/custom.js"></script>     
    </body>
 </html>
