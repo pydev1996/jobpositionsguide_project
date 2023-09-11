@@ -21,6 +21,7 @@ class JobPosition(models.Model):
         ('Construction Field', 'Construction Field'),
         ('Mechanical', 'Mechanical'),
          ('Farming', 'Farming'),
+         ('Sales','Sales')
         # Add more categories as needed
     ]
 

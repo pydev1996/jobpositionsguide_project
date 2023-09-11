@@ -1,6 +1,7 @@
 # jobpositionsguide_project/jobpositions/views.py
 from django.shortcuts import render, get_object_or_404
 from .models import JobPosition
+import re
 
 def job_positions_list(request):
     job_positions = JobPosition.objects.all()
@@ -21,7 +22,7 @@ translator = Translator()
 
 # translate a spanish text to arabic for instance
 translation = translator.translate("Hola Mundo", dest="hi")
-print(f"{translation.origin} ({translation.src}) --> {translation.text} ({translation.dest})")
+#print(f"{translation.origin} ({translation.src}) --> {translation.text} ({translation.dest})")
 # ... Other imports and code ...
 
 def job_position_detail(request, job_position_id):
@@ -32,20 +33,22 @@ def job_position_detail(request, job_position_id):
         selected_language = request.POST.get('lang')
         description=translator.translate("Description", dest=selected_language.lower())
         SkillsYouNeed=translator.translate("Skills You Need!", dest=selected_language.lower())
-        Proceedings=translator.translate("Proceedings", dest=selected_language.lower())
-        skills = [string.replace('\r', '') for string in job_position.skills.split("\n")]
+        Proceedings=translator.translate("How to become "+job_position.title, dest=selected_language.lower())
+        cleaned_skils = "\n".join(line for line in job_position.skills.splitlines() if line.strip())
+        skills = [string.replace('\r', '') for string in cleaned_skils.split("\n")]
         skill=[]
         for s in skills:
             sk=translator.translate(s, dest=selected_language.lower())
             skill.append(sk.text)
-        
-        proceedings = [string.replace('\r', '') for string in job_position.proceedings.split("\n")]
+        cleaned_proceedings = "\n".join(line for line in job_position.proceedings.splitlines() if line.strip())
+        proceedings = [string.replace('\r', '') for string in cleaned_proceedings.split("\n")]
         proceeding=[]
         for s in proceedings:
             sk=translator.translate(s, dest=selected_language.lower())
             proceeding.append(sk.text)
-
-        description_lines = job_position.description.strip().split('\n')
+        cleaned_text = re.sub(r'(\bQ\d+:|\bA\d+:)\s*', '', job_position.description)
+        cleaned_text = "\n".join(line for line in cleaned_text.splitlines() if line.strip())
+        description_lines = cleaned_text.strip().split('\n')
 
         questions_and_answers = []
         current_question = None
@@ -76,11 +79,15 @@ def job_position_detail(request, job_position_id):
     else:
         description=translator.translate("Description")
         SkillsYouNeed=translator.translate("Skills You Need!")
-        Proceedings=translator.translate("Proceedings")
-        description_lines = job_position.description.strip().split('\n')
+        Proceedings=translator.translate("How to become "+job_position.title)
+        cleaned_text = re.sub(r'(\bQ\d+:|\bA\d+:)\s*', '', job_position.description)
+        cleaned_text = "\n".join(line for line in cleaned_text.splitlines() if line.strip())
+        description_lines = cleaned_text.strip().split('\n')
 
-        skills = [string.replace('\r', '') for string in job_position.skills.split("\n")]
-        proceedings = [string.replace('\r', '') for string in job_position.proceedings.split("\n")]
+        cleaned_skils = "\n".join(line for line in job_position.skills.splitlines() if line.strip())
+        skills = [string.replace('\r', '') for string in cleaned_skils.split("\n")]
+        cleaned_proceedings = "\n".join(line for line in job_position.proceedings.splitlines() if line.strip())
+        proceedings = [string.replace('\r', '') for string in cleaned_proceedings.split("\n")]
         
 
         questions_and_answers = []
