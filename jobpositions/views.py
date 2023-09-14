@@ -2,6 +2,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import JobPosition
 import re
+import time
 
 def job_positions_list(request):
     job_positions = JobPosition.objects.all()
@@ -30,6 +31,7 @@ def job_position_detail(request, job_position_id):
     job_position = get_object_or_404(JobPosition, id=job_position_id)
    
     if request.method == 'POST':
+        start=time.time()
         selected_language = request.POST.get('lang')
         description=translator.translate("Description", dest=selected_language.lower())
         SkillsYouNeed=translator.translate("Skills You Need!", dest=selected_language.lower())
@@ -74,6 +76,7 @@ def job_position_detail(request, job_position_id):
             'Proceedings':Proceedings.text,
             # ...
         }
+        print(time.time()-start)
         return render(request, 'job_position_detail.html', context)
     
     else:
@@ -117,6 +120,7 @@ def job_position_detail(request, job_position_id):
         return render(request, 'job_position_detail.html', context)
 
 
+
 from django.db.models import Count
 
 
@@ -124,7 +128,7 @@ from django.db.models import Count
 def category_buttons(request):
     category_counts = JobPosition.objects.values('category').annotate(position_count=Count('id'))
 
-    category_counts = JobPosition.objects.values('category').annotate(position_count=Count('id'))
+    #category_counts = JobPosition.objects.values('category').annotate(position_count=Count('id'))
 
     # Create a dictionary to store the category counts
     category_counts_dict = [item['position_count'] for item in category_counts]
@@ -158,7 +162,8 @@ def search(request):
 def job_positions_by_category(request, category):
     query = request.GET.get('q')
     job_positions = JobPosition.objects.filter(category=category)
-
+    
+    #print(job_positions)
     if query:
         job_positions = job_positions.filter(title__icontains=query)
 
