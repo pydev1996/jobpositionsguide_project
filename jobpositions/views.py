@@ -176,6 +176,7 @@ def search(request):
         'job_positions': job_positions,
     }
     return render(request, 'search.html',context)
+from django.template.defaultfilters import upper
 def job_positions_by_category(request, category):
     query = request.GET.get('q')
     job_positions = JobPosition.objects.filter(category=category)
@@ -183,7 +184,7 @@ def job_positions_by_category(request, category):
     #print(job_positions)
     if query:
         job_positions = job_positions.filter(title__icontains=query)
-
+    #job_positions = [{'title': upper(job_position.title)} for job_position in job_positions]
     context = {
         'category': category,
         'job_positions': job_positions,

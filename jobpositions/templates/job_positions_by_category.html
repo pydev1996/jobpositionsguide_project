@@ -197,8 +197,8 @@
                        <a class="nav-link" href="contact.html">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                       <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                    </li>
+                     <a class="nav-link" href="{% url 'search' %}"><i class="fa fa-search" aria-hidden="true"></i></a>
+                  </li>
                  </ul>
               </div>
            </nav>
@@ -214,15 +214,15 @@
        </div>
 
      
-     <div class="job-positions">
-      {% for job_position in job_positions %}
-      <a href="{% url 'job_position_detail' job_position.id %}"
-         class="job-box"
-         data-id="{{ job_position.id }}">
-          <h2>{{ job_position.title }}</h2>
-      </a>
-      {% endfor %}
-  </div>
+       <div class="job-positions">
+         {% for job_position in job_positions %}
+         <a href="{% url 'job_position_detail' job_position.id %}"
+            class="job-box"
+            data-id="{{ job_position.id }}">
+             <h2>{{ job_position.title|upper }}</h2>
+         </a>
+         {% endfor %}
+     </div>
      </div>
      <!-- banner section end -->
     
@@ -293,6 +293,9 @@
      <!-- sidebar -->
      <script src="/static/images/js/jquery.mCustomScrollbar.concat.min.js"></script>
      <script src="/static/images/js/custom.js"></script>  
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     
+  
      
     
   </body>

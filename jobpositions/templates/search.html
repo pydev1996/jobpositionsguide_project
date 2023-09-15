@@ -215,7 +215,7 @@
         <a href="{% url 'job_position_detail' job_position.id %}"
            class="job-box"
            data-id="{{ job_position.id }}">
-            <h2>{{ job_position.title }}</h2>
+            <h2>{{ job_position.title|upper }}</h2>
         </a>
         {% endfor %}
     </div>
@@ -262,7 +262,7 @@
                      </li>
                      <li>
                         <a href="#">
-                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email :careerpath@gmail.com</span>
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email :setcareerpath@gmail.com</span>
                         </a>
                      </li>
                   </ul>
