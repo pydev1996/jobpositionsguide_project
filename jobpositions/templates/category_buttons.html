@@ -29,6 +29,42 @@
       <link rel="stylesheet" href="static/images/css/owl.carousel.min.css">
       <link rel="stylesheet" href="static/images/css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+   <style>
+      /* Add this CSS to your existing stylesheet or create a new .css file */
+
+      .send_btn {
+    width: 170px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main_bt{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #d33a11;
+    padding: 15px 50px 12px 50px;
+    border-radius: 30px;
+    display: block;
+}
+
+.main_bt {
+    color: #ffffff;
+    background-color: #d33a11;
+}
+
+.main_bt:hover {
+    color: #323131;
+    background-color: #ffffff;
+}
+
+.padding_0 {
+    padding: 0px;
+}
+
+   </style>
    </head>
    <body>
       <!--header section start -->
@@ -50,9 +86,6 @@
                      <li class="nav-item">
                         <a class="nav-link" href="{% url 'gallery' %}">Category</a>
                      </li>
-                     <!-- <li class="nav-item">
-                        <a class="nav-link" href="services.html">Services</a>
-                     </li> -->
                      <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
                      </li>
@@ -77,7 +110,7 @@
                               <h1 class="outstanding_text">Vision</h1>
                               <h1 class="coffee_text">Welcome</h1>
                               <p class="there_text">Explore a wide range of job positions in various categories</p>
-                              <div class="learnmore_bt"><a href="#">Learn More</a></div>
+                              <div class="learnmore_bt"><a href="#">Explore</a></div>
                            </div>
                         </div>
                      </div>
@@ -89,7 +122,7 @@
                               <h1 class="outstanding_text">Learn </h1>
                               <h1 class="coffee_text">Advance Your Career</h1>
                               <p class="there_text">Discover new opportunities and take your career to the next level.</p>
-                              <div class="learnmore_bt"><a href="#">Learn More</a></div>
+                              <div class="learnmore_bt"><a href="#">Discover</a></div>
                            </div>
                         </div>
                      </div>
@@ -101,7 +134,7 @@
                               <h1 class="outstanding_text">Success </h1>
                               <h1 class="coffee_text">Set Your Goals</h1>
                               <p class="there_text">Choose your interests or goal for building your careeer! </p>
-                              <div class="learnmore_bt"><a href="#">Learn More</a></div>
+                              <div class="learnmore_bt"><a href="#">interests</a></div>
                            </div>
                         </div>
                      </div>
@@ -195,7 +228,7 @@
                         </div>
                         <h3 class="decorate_text">Check Interest</h3>
                         <p class="tation_text">Choose your interest of Skills you need</p>
-                        <div class="readmore_bt"><a href="#">Read More</a></div>
+                        <!-- <div class="readmore_bt"><a href="#">Read More</a></div> -->
                      </div>
                   </div>
                   <div class="col-lg-4 col-sm-12 col-md-4">
@@ -205,8 +238,8 @@
                            <img src="static/images/images/mechanic.png" class="image_2">
                         </div>
                         <h3 class="decorate_text">Total Number of Categories</h3>
-                        <p class="tation_text"> We Providing {{total_category}} types Categories </p>
-                        <div class="readmore_bt"><a href="#">Read More</a></div>
+                        <p class="tation_text"> Present we Providing {{total_category}} types Categories ,Soon we will add more categories </p>
+                        <!-- <div class="readmore_bt"><a href="#">Read More</a></div> -->
                      </div>
                   </div>
                   <div class="col-lg-4 col-sm-12 col-md-4">
@@ -217,7 +250,7 @@
                         </div>
                         <h3 class="decorate_text">Job Positions</h3>
                         <p class="tation_text">Each Category have multiple categories</p>
-                        <div class="readmore_bt"><a href="#">Read More</a></div>
+                        <!-- <div class="readmore_bt"><a href="#">Read More</a></div> -->
                      </div>
                   </div>
                  
@@ -301,21 +334,25 @@
                <div class="col-md-6 padding_0">
                   <div class="mail_section">
                      <div class="email_text">
+                        <form method="POST" action="{% url 'category_buttons' %}">
+
+                           {% csrf_token %}
                         <div class="form-group">
-                           <input type="text" class="email-bt" placeholder="Name" name="Email">
+                           <input type="text" class="email-bt" placeholder="Name" name="name">
                         </div>
                         <div class="form-group">
-                           <input type="text" class="email-bt" placeholder="Email" name="Email">
+                           <input type="text" class="email-bt" placeholder="Email" name="email">
                         </div>
                         <div class="form-group">
-                           <input type="text" class="email-bt" placeholder="Phone Numbar" name="Email">
+                           <input type="text" class="email-bt" placeholder="Phone Number" name="phone_number">
                         </div>
                         <div class="form-group">
-                           <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
+                           <textarea class="massage-bt" placeholder="Message" rows="5" id="comment" name="message"></textarea>
                         </div>
                         <div class="send_btn">
-                           <div type="text" class="main_bt"><a href="#">SEND</a></div>
+                           <button type="submit" class="main_bt">SEND</button>
                         </div>
+                     </form>
                      </div>
                   </div>
                </div>
@@ -343,17 +380,16 @@
                   <h3 class="useful_text">Menu</h3>
                   <div class="footer_menu">
                      <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="{% url 'category_buttons' %}">Home</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
                      </ul>
                   </div>
                </div>
                <div class="col-lg-3 col-sm-6">
                   <h1 class="useful_text">Useful Link</h1>
-                  <p class="dummy_text">Adipiscing Elit, sed do Eiusmod Tempor incididunt </p>
+                  <p class="dummy_text">contact me for collaborating or adding your links here. </p>
                </div>
                <div class="col-lg-3 col-sm-6">
                   <h1 class="useful_text">Contact Us</h1>

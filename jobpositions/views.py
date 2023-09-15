@@ -124,22 +124,39 @@ def job_position_detail(request, job_position_id):
 from django.db.models import Count
 
 
+from .models import ContactMessage
+from django.shortcuts import render, redirect
+from django.db.models import Count
+from .models import JobPosition
+from .forms import ContactForm, ContactMessage  # Import your form and model
 
 def category_buttons(request):
     category_counts = JobPosition.objects.values('category').annotate(position_count=Count('id'))
 
-    #category_counts = JobPosition.objects.values('category').annotate(position_count=Count('id'))
-
-    # Create a dictionary to store the category counts
     category_counts_dict = [item['position_count'] for item in category_counts]
+    
+    if request.method == 'POST':  # Handle the form submission only for POST requests
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Create a new instance of the ContactMessage model and save it to the database
+            contact_message = ContactMessage(
+                name=form.cleaned_data['name'],
+                email=form.cleaned_data['email'],
+                phone_number=form.cleaned_data['phone_number'],
+                message=form.cleaned_data['message']
+            )
+            contact_message.save()
+            # Redirect to a success page or any other desired action
+            #return redirect('success_page')
+    else:
+        form = ContactForm()
 
-    # Now you have the category counts as a dictionary
-    print(sum(category_counts_dict))
-    context={
-        "total_category":str(sum(category_counts_dict))
+    context = {
+        "total_category": str(sum(category_counts_dict)),
+        "form": form
     }
-    #print(category_counts_dict)
-    return render(request, 'category_buttons.html',context)
+    return render(request, 'category_buttons.html', context)
+
 def about(request):
     return render(request, 'about.html')
 def gallery(request):
@@ -172,4 +189,8 @@ def job_positions_by_category(request, category):
         'job_positions': job_positions,
     }
     return render(request, 'job_positions_by_category.html', context)
+
+from django.shortcuts import render, redirect
+from .forms import ContactForm
+
 

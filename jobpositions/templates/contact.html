@@ -29,13 +29,49 @@
       <link rel="stylesheet" href="/static/images/css/owl.carousel.min.css">
       <link rel="stylesheet" href="/static/images/css/owl.theme.default.min.css">
       <link rel="stylesheet" href="/static/images/https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <style>
+         /* Add this CSS to your existing stylesheet or create a new .css file */
+   
+         .send_btn {
+       width: 170px;
+       margin: 0 auto;
+       text-align: center;
+   }
+   
+   .main_bt{
+       width: 100%;
+       margin: 0 auto;
+       text-align: center;
+       font-size: 16px;
+       color: #ffffff;
+       background-color: #d33a11;
+       padding: 15px 50px 12px 50px;
+       border-radius: 30px;
+       display: block;
+   }
+   
+   .main_bt {
+       color: #ffffff;
+       background-color: #d33a11;
+   }
+   
+   .main_bt:hover {
+       color: #323131;
+       background-color: #ffffff;
+   }
+   
+   .padding_0 {
+       padding: 0px;
+   }
+   
+      </style>
    </head>
    <body>
       <!--header section start -->
       <div class="header_section">
          <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="logo"><a href="index.html"><img src="/static/images/images/logo1.png"></a></div>
+               <div class="logo"><a href="{% url 'category_buttons' %}"><img src="/static/images/images/logo1.png"></a></div>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
@@ -50,14 +86,11 @@
                      <li class="nav-item">
                         <a class="nav-link" href="{% url 'gallery' %}">Category</a>
                      </li>
-                     <!-- <li class="nav-item">
-                        <a class="nav-link" href="services.html">Services</a>
-                     </li> -->
                      <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        <a class="nav-link" href="{% url 'search' %}"><i class="fa fa-search" aria-hidden="true"></i></a>
                      </li>
                   </ul>
                </div>
@@ -77,21 +110,25 @@
                <div class="col-md-6 padding_0">
                   <div class="mail_section">
                      <div class="email_text">
+                        <form method="POST" action="{% url 'category_buttons' %}">
+
+                           {% csrf_token %}
                         <div class="form-group">
-                           <input type="text" class="email-bt" placeholder="Name" name="Email">
+                           <input type="text" class="email-bt" placeholder="Name" name="name">
                         </div>
                         <div class="form-group">
-                           <input type="text" class="email-bt" placeholder="Email" name="Email">
+                           <input type="text" class="email-bt" placeholder="Email" name="email">
                         </div>
                         <div class="form-group">
-                           <input type="text" class="email-bt" placeholder="Phone Number" name="Email">
+                           <input type="text" class="email-bt" placeholder="Phone Number" name="phone_number">
                         </div>
                         <div class="form-group">
-                           <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
+                           <textarea class="massage-bt" placeholder="Message" rows="5" id="comment" name="message"></textarea>
                         </div>
                         <div class="send_btn">
-                           <div type="text" class="main_bt"><a href="#">SEND</a></div>
+                           <button type="submit" class="main_bt">SEND</button>
                         </div>
+                        </form>
                      </div>
                   </div>
                </div>
@@ -118,17 +155,16 @@
                   <h3 class="useful_text">Menu</h3>
                   <div class="footer_menu">
                      <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="{% url 'category_buttons' %}">Home</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
                      </ul>
                   </div>
                </div>
                <div class="col-lg-3 col-sm-6">
                   <h1 class="useful_text">Useful Link</h1>
-                  <p class="dummy_text">Adipiscing Elit, sed do Eiusmod Tempor incididunt </p>
+                  <p class="dummy_text">contact me for collaborating or adding your links here. </p>
                </div>
                <div class="col-lg-3 col-sm-6">
                   <h1 class="useful_text">Contact Us</h1>
@@ -136,17 +172,17 @@
                      <ul>
                         <li>
                            <a href="#">
-                           <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10">Address : Loram Ipusm</span>
+                           <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10">Address : Hyderbad</span>
                            </a>
                         </li>
                         <li>
                            <a href="#">
-                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">Call : +01 1234567890</span>
+                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">Call : +91 6301708990</span>
                            </a>
                         </li>
                         <li>
                            <a href="#">
-                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email : demo@gmail.com</span>
+                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email :careerpath@gmail.com</span>
                            </a>
                         </li>
                      </ul>
@@ -159,7 +195,7 @@
       <!-- copyright section start -->
       <div class="copyright_section">
          <div class="container">
-            <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+            <p class="copyright_text">2023 All Rights Reserved. Design by <a href="https://html.design">Naveen Chikile</a></p>
          </div>
       </div>
       <!-- copyright section end -->

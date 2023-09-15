@@ -317,6 +317,7 @@ height:40px;
     width: 170px;
 }
 
+
 .learnmore_bt a {
     width: 100%;
     float: left;
@@ -902,7 +903,7 @@ a:hover {
     text-align: center;
 }
 
-.main_bt a {
+.main_bt{
     width: 100%;
     margin: 0 auto;
     text-align: center;
@@ -914,12 +915,12 @@ a:hover {
     display: block;
 }
 
-.main_bt a {
+.main_bt{
     color: #ffffff;
     background-color: #d33a11;
 }
 
-.main_bt a:hover {
+.main_bt:hover {
     color: #323131;
     background-color: #ffffff;
 }
@@ -927,6 +928,9 @@ a:hover {
 .padding_0 {
     padding: 0px;
 }
+/* Add this CSS to your existing stylesheet or create a new .css file */
+
+/* Style for the "SEND" button */
 
 /* contact section end */
 
