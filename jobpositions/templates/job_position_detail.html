@@ -182,15 +182,13 @@
                     <button type="submit">Change Language</button>
                 </form>
             </div>
-            <h2>{{description}}</h2>
-            <ul class="description-list">
-                {% for question, answer in questions_and_answers %}
-                <li>
-                    <strong>{{ question }}</strong><br>
-                    <span class="answer">{{ answer }}</span>
-                </li>
-                {% endfor %}
-            </ul>
+            <div class="section-heading">
+        <h2>{{description}}</h2>
+        <ul class="description-list">
+            {% for sentence in cleaned_text %}
+            <li>{{ sentence }}</li>
+        {% endfor %}
+        </ul>
         </div>
         <div class="section-heading">
             <h2>{{SkillsYouNeed}}</h2>

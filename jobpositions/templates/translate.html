@@ -1,92 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-    <link rel="stylesheet" href="/static/style.css" />
-    <title>CAREERPATH</title>
-  </head>
-  <body>
-    <div class="mode">
-      <label class="toggle" for="dark-mode-btn">
-        <div class="toggle-track">
-          <input type="checkbox" class="toggle-checkbox" id="dark-mode-btn" />
-          <span class="toggle-thumb"></span>
-          <img src="/static/images/sun.png" alt="" />
-          <img src="/static/images/moon.png" alt="" />
-        </div>
-      </label>
-    </div>
-    <div class="container">
-      <div class="card input-wrapper">
-        <div class="from">
-          <span class="heading">From :</span>
-          <div class="dropdown-container" id="input-language">
-            <div class="dropdown-toggle">
-              <ion-icon name="globe-outline"></ion-icon>
-              <span class="selected" data-value="auto">Auto Detect</span>
-              <ion-icon name="chevron-down-outline"></ion-icon>
-            </div>
-            <ul class="dropdown-menu">
-              <li class="option active">DropDown Menu Item 1</li>
-              <li class="option">DropDown Menu Item 2</li>
-            </ul>
-          </div>
-        </div>
-        <div class="text-area">
-          <textarea
-            id="input-text"
-            cols="30"
-            rows="10"
-            placeholder="Enter your text here"
-          >{{cleaned_text}}</textarea>
-          <div class="chars"><span id="input-chars">0</span> / 5000</div>
-        </div>
-       
-      </div>
 
-      <div class="center">
-        <div class="swap-position">
-          <ion-icon name="swap-horizontal-outline"></ion-icon>
-        </div>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Translation</title>
+</head>
 
-      <div class="card output-wrapper">
-        <div class="to">
-          <span class="heading">To :</span>
-          <div class="dropdown-container" id="output-language">
-            <div class="dropdown-toggle">
-              <ion-icon name="globe-outline"></ion-icon>
-              <span class="selected" data-value="en">Englsih</span>
-              <ion-icon name="chevron-down-outline"></ion-icon>
-            </div>
-            <ul class="dropdown-menu">
-              <li class="option active">DropDown Menu Item 1</li>
-              <li class="option">DropDown Menu Item 2</li>
-            </ul>
-          </div>
-        </div>
-        <textarea
-          id="output-text"
-          cols="30"
-          rows="10"
-          placeholder="Translated text will appear here"
-          disabled
-        ></textarea>
-       
-      </div>
+<body>
+
+    <!-- Display Original Text -->
+    <div id="originalText">
+        <h2>Original Text:</h2>
+        <p><span id="cleanedText">{{cleaned_text}}</span></p>
     </div>
 
-    <script src="/static/languages.js"></script>
-    <script src="/static/script.js"></script>
-  </body>
+    <!-- Language Dropdown -->
+    <div class="dropdown-container" id="input-language">
+        <div class="dropdown-toggle">
+            <ion-icon name="globe-outline"></ion-icon>
+            <span class="selected" data-value="auto">Auto Detect</span>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+        </div>
+        <ul class="dropdown-menu">
+            <!-- Options will be populated dynamically -->
+        </ul>
+    </div>
+
+    <div class="dropdown-container" id="output-language">
+        <div class="dropdown-toggle">
+            <ion-icon name="globe-outline"></ion-icon>
+            <span class="selected" data-value="en">English</span>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+        </div>
+        <ul class="dropdown-menu">
+            <!-- Options will be populated dynamically -->
+        </ul>
+    </div>
+
+    <!-- Translate Button -->
+    <button onclick="translate()">Translate</button>
+
+    <!-- Script -->
+    <script>
+        const dropdowns = document.querySelectorAll(".dropdown-container"),
+            inputLanguageDropdown = document.querySelector("#input-language"),
+            outputLanguageDropdown = document.querySelector("#output-language");
+
+        function populateDropdown(dropdown, options) {
+            dropdown.querySelector("ul").innerHTML = "";
+            options.forEach((option) => {
+                const li = document.createElement("li");
+                const title = option.name + " (" + option.native + ")";
+                li.innerHTML = title;
+                li.dataset.value = option.code;
+                li.classList.add("option");
+                dropdown.querySelector("ul").appendChild(li);
+            });
+        }
+
+        // Assuming you have an array of languages in the 'languages' variable
+        const languages = [
+            { name: "English", native: "English",code:'en' },
+            {
+                name: "Telugu",
+                native: "telugu",
+                code: "te",
+            }
+            // Add more language options as needed
+        ];
+
+        populateDropdown(inputLanguageDropdown, languages);
+        populateDropdown(outputLanguageDropdown, languages);
+
+        dropdowns.forEach((dropdown) => {
+            dropdown.addEventListener("click", (e) => {
+                dropdown.classList.toggle("active");
+            });
+
+            dropdown.querySelectorAll(".option").forEach((item) => {
+                item.addEventListener("click", (e) => {
+                    dropdown.querySelectorAll(".option").forEach((item) => {
+                        item.classList.remove("active");
+                    });
+                    item.classList.add("active");
+                    const selected = dropdown.querySelector(".selected");
+                    selected.innerHTML = item.innerHTML;
+                    selected.dataset.value = item.dataset.value;
+                    translate();
+                });
+            });
+        });
+
+        document.addEventListener("click", (e) => {
+            dropdowns.forEach((dropdown) => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove("active");
+                }
+            });
+        });
+
+        const cleanedTextElem = document.querySelector("#cleanedText");
+
+        function translate() {
+            const inputText = cleanedTextElem.textContent;
+            const inputLanguage = inputLanguageDropdown.querySelector(".selected").dataset.value;
+            const outputLanguage = outputLanguageDropdown.querySelector(".selected").dataset.value;
+
+            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${inputLanguage}&tl=${outputLanguage}&dt=t&q=${encodeURI(inputText)}`;
+
+            fetch(url)
+                .then((response) => response.json())
+                .then((json) => {
+                    console.log(json);
+                    cleanedTextElem.textContent = json[0].map((item) => item[0]).join("");
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    </script>
+
+</body>
+
 </html>
