@@ -64,14 +64,15 @@ def job_position_detail(request, job_position_id):
         # Assuming data is the text you provided
         text_lines = [line.strip() for line in cleaned_description.split('\n') if line.strip()]
         skills=[line.strip() for line in cleaned_skills.split('\n') if line.strip()]
+        proceeding = [string.replace('\r', '') for string in cleaned_proceedings.split("\n")]
         context = {
             'job_position':job_position,
             'cleaned_text':text_lines,
             'description':"Description",
-            'skills':cleaned_skills,
+            'skills':skills,
             'SkillsYouNeed':"Skills You Need",
             'Proceedings':'Proceedings',
-            'proceedings':cleaned_proceedings
+            'proceedings':proceeding
         }
        
         return render(request, 'job_position_detail.html', context)
