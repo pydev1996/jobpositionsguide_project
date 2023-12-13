@@ -29,95 +29,95 @@ translation = translator.translate("Hola Mundo", dest="hi")
 def job_position_detail(request, job_position_id):
     translator = Translator()
     job_position = get_object_or_404(JobPosition, id=job_position_id)
-   
-    if request.method == 'POST':
-        start=time.time()
-        selected_language = request.POST.get('lang')
-        description=translator.translate("Description", dest=selected_language.lower())
-        SkillsYouNeed=translator.translate("Skills You Need!", dest=selected_language.lower())
-        Proceedings=translator.translate("How to become "+job_position.title, dest=selected_language.lower())
-        cleaned_skils = "\n".join(line for line in job_position.skills.splitlines() if line.strip())
-        skills = [string.replace('\r', '') for string in cleaned_skils.split("\n")]
-        skill=[]
-        for s in skills:
-            sk=translator.translate(s, dest=selected_language.lower())
-            skill.append(sk.text)
-        cleaned_proceedings = "\n".join(line for line in job_position.proceedings.splitlines() if line.strip())
-        proceedings = [string.replace('\r', '') for string in cleaned_proceedings.split("\n")]
-        proceeding=[]
-        for s in proceedings:
-            sk=translator.translate(s, dest=selected_language.lower())
-            proceeding.append(sk.text)
-        cleaned_text = re.sub(r'(\bQ\d+:|\bA\d+:)\s*', '', job_position.description)
-        cleaned_text = "\n".join(line for line in cleaned_text.splitlines() if line.strip())
-        description_lines = cleaned_text.strip().split('\n')
+    cleaned_text = re.sub(r'(\bQ\d+:|\bA\d+:)\s*', '', job_position.description)
+    # if request.method == 'POST':
+    #     start=time.time()
+    #     selected_language = request.POST.get('lang')
+    #     description=translator.translate("Description", dest=selected_language.lower())
+    #     SkillsYouNeed=translator.translate("Skills You Need!", dest=selected_language.lower())
+    #     Proceedings=translator.translate("How to become "+job_position.title, dest=selected_language.lower())
+    #     cleaned_skils = "\n".join(line for line in job_position.skills.splitlines() if line.strip())
+    #     skills = [string.replace('\r', '') for string in cleaned_skils.split("\n")]
+    #     skill=[]
+    #     for s in skills:
+    #         sk=translator.translate(s, dest=selected_language.lower())
+    #         skill.append(sk.text)
+    #     cleaned_proceedings = "\n".join(line for line in job_position.proceedings.splitlines() if line.strip())
+    #     proceedings = [string.replace('\r', '') for string in cleaned_proceedings.split("\n")]
+    #     proceeding=[]
+    #     for s in proceedings:
+    #         sk=translator.translate(s, dest=selected_language.lower())
+    #         proceeding.append(sk.text)
+    #     cleaned_text = re.sub(r'(\bQ\d+:|\bA\d+:)\s*', '', job_position.description)
+    #     cleaned_text = "\n".join(line for line in cleaned_text.splitlines() if line.strip())
+    #     description_lines = cleaned_text.strip().split('\n')
 
-        questions_and_answers = []
-        current_question = None
+    #     questions_and_answers = []
+    #     current_question = None
     
-        for line in description_lines:
-            translated_line = translator.translate(line, dest=selected_language.lower())
-            line_text = translated_line.text  # Get the translated text from Translated object
-            if "?" in line_text:
-                current_question = line_text.strip()
-            else:
-                # Otherwise, it's an answer
-                if current_question:
-                    questions_and_answers.append((current_question, line_text.strip()))
-                    current_question = None
+    #     for line in description_lines:
+    #         translated_line = translator.translate(line, dest=selected_language.lower())
+    #         line_text = translated_line.text  # Get the translated text from Translated object
+    #         if "?" in line_text:
+    #             current_question = line_text.strip()
+    #         else:
+    #             # Otherwise, it's an answer
+    #             if current_question:
+    #                 questions_and_answers.append((current_question, line_text.strip()))
+    #                 current_question = None
 
-        context = {
-            'job_position': job_position,
-            'questions_and_answers': questions_and_answers,
-            'skills': skill,
-            'proceedings':proceeding,
-            'description':description.text,
-            'SkillsYouNeed':SkillsYouNeed.text,
-            'Proceedings':Proceedings.text,
-            # ...
-        }
-        print(time.time()-start)
-        return render(request, 'job_position_detail.html', context)
+    #     context = {
+    #         'job_position': job_position,
+    #         'questions_and_answers': questions_and_answers,
+    #         'skills': skill,
+    #         'proceedings':proceeding,
+    #         'description':description.text,
+    #         'SkillsYouNeed':SkillsYouNeed.text,
+    #         'Proceedings':Proceedings.text,
+    #         # ...
+    #     }
+    #     print(time.time()-start)
+    #     return render(request, 'job_position_detail.html', context)
     
-    else:
-        description=translator.translate("Description")
-        SkillsYouNeed=translator.translate("Skills You Need!")
-        Proceedings=translator.translate("How to become "+job_position.title)
-        cleaned_text = re.sub(r'(\bQ\d+:|\bA\d+:)\s*', '', job_position.description)
-        cleaned_text = "\n".join(line for line in cleaned_text.splitlines() if line.strip())
-        description_lines = cleaned_text.strip().split('\n')
+    # else:
+    #     description=translator.translate("Description")
+    #     SkillsYouNeed=translator.translate("Skills You Need!")
+    #     Proceedings=translator.translate("How to become "+job_position.title)
+    #     cleaned_text = re.sub(r'(\bQ\d+:|\bA\d+:)\s*', '', job_position.description)
+    #     cleaned_text = "\n".join(line for line in cleaned_text.splitlines() if line.strip())
+    #     description_lines = cleaned_text.strip().split('\n')
 
-        cleaned_skils = "\n".join(line for line in job_position.skills.splitlines() if line.strip())
-        skills = [string.replace('\r', '') for string in cleaned_skils.split("\n")]
-        cleaned_proceedings = "\n".join(line for line in job_position.proceedings.splitlines() if line.strip())
-        proceedings = [string.replace('\r', '') for string in cleaned_proceedings.split("\n")]
+    #     cleaned_skils = "\n".join(line for line in job_position.skills.splitlines() if line.strip())
+    #     skills = [string.replace('\r', '') for string in cleaned_skils.split("\n")]
+    #     cleaned_proceedings = "\n".join(line for line in job_position.proceedings.splitlines() if line.strip())
+    #     proceedings = [string.replace('\r', '') for string in cleaned_proceedings.split("\n")]
         
 
-        questions_and_answers = []
-        current_question = None
+    #     questions_and_answers = []
+    #     current_question = None
 
-        for line in description_lines:
-            translated_line = translator.translate(line)
-            line_text = translated_line.text  # Get the translated text from Translated object
-            if "?" in line_text:
-                current_question = line_text.strip()
-            else:
-                # Otherwise, it's an answer
-                if current_question:
-                    questions_and_answers.append((current_question, line_text.strip()))
-                    current_question = None
+    #     for line in description_lines:
+    #         translated_line = translator.translate(line)
+    #         line_text = translated_line.text  # Get the translated text from Translated object
+    #         if "?" in line_text:
+    #             current_question = line_text.strip()
+    #         else:
+    #             # Otherwise, it's an answer
+    #             if current_question:
+    #                 questions_and_answers.append((current_question, line_text.strip()))
+    #                 current_question = None
 
-        context = {
-            'job_position': job_position,
-            'questions_and_answers': questions_and_answers,
-            'skills': skills,
-            'proceedings':proceedings,
-            'description':description.text,
-            'SkillsYouNeed':SkillsYouNeed.text,
-            'Proceedings':Proceedings.text,
-            # ...
-        }
-        return render(request, 'job_position_detail.html', context)
+    #     context = {
+    #         'job_position': job_position,
+    #         'questions_and_answers': questions_and_answers,
+    #         'skills': skills,
+    #         'proceedings':proceedings,
+    #         'description':description.text,
+    #         'SkillsYouNeed':SkillsYouNeed.text,
+    #         'Proceedings':Proceedings.text,
+    #         # ...
+    #     }
+    return render(request, 'translate.html', {'cleaned_text':cleaned_text})
 
 
 

@@ -12,6 +12,7 @@
     <!-- fevicon -->
     <link rel="icon" href="/static/images/images/fevicon.png" type="image/gif" />
     <style>
+        /* Your CSS styles here */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -138,50 +139,21 @@
         button[type="submit"]:hover {
             background-color: #0056b3;
         }
-        .loader{
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    background-color: #fff;
-    position: absolute;
-}
-.loader>div{
-    height: 100px;
-    width: 100px;
-    border: 15px solid #45474b;
-    border-top-color: #2a88e6;
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 50%;
-    animation: spin 1.5s infinite linear;
-}
-@keyframes spin{
-    100%{
-        transform: rotate(360deg);
-    }
-}
-        
-
     </style>
 </head>
 <body>
-    
     <div class="back-button">
         <a href="{% url 'job_category' job_position.category %}" class="btn btn-primary">
             &#8592; Back
         </a>
     </div>
-    
+
     <div class="container">
+       
+
         <div class="header">
+            <!-- Your job title and logo -->
             <h1>
-                {% if job_position.title == "python developer" %}
-                    <img src="https://cdn3.emoji.gg/emojis/1850-python-logo.png" width="64px" height="64px" alt="Python_Logo">
-                {% endif %}
                 {{ job_position.title }}
             </h1>
         </div>
@@ -212,7 +184,7 @@
             </div>
             <h2>{{description}}</h2>
             <ul class="description-list">
-                {% for question,answer in questions_and_answers %}
+                {% for question, answer in questions_and_answers %}
                 <li>
                     <strong>{{ question }}</strong><br>
                     <span class="answer">{{ answer }}</span>
@@ -237,11 +209,7 @@
             </ul>
         </div>
     </div>
-    <script>
-        $(window).on('load',function(){
-            $(".loader").fadeOut(1500);
-            $(".content").fadeIn(1500);
-        });
-    </script>
+
+    
 </body>
 </html>
