@@ -110,6 +110,51 @@ def category_buttons(request):
         "form": form
     }
     return render(request, 'category_buttons.html', context)
+def institutions(request):
+    return render(request, 'insitutions.html')
+
+from django.shortcuts import render, redirect
+from .models import Institutor
+from .forms import InstitutorSignUpForm  # Assuming you create a form for the signup
+
+def institutor_signup(request):
+    if request.method == 'POST':
+        form = InstitutorSignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # You may redirect to a success page or perform additional actions
+            return redirect('institutor_login')
+    else:
+        form = InstitutorSignUpForm()
+
+    return render(request, 'signup.html', {'form': form})
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from .forms import InstitutorLoginForm
+def institutor_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            institutor = Institutor.objects.get(username=username)
+
+            if institutor.password == password:
+                # Password is correct, log in the institutor
+                request.session['username'] = institutor.username  # Store institutor ID in session
+                return redirect('institutorhomepage')
+            else:
+                messages.error(request, 'Invalid username or password.')
+
+        except Institutor.DoesNotExist:
+            messages.error(request, 'Invalid username or password.')
+
+    return render(request, 'login.html')
+
+def institutorhomepage(request):
+    institutor_username = request.session.get('username')
+    return render(request, 'institutor.html', {'institutor_username': institutor_username})
 
 def about(request):
     return render(request, 'about.html')

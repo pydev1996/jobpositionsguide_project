@@ -46,3 +46,13 @@ class ContactMessage(models.Model):
         return self.name
 
 
+class Institutor(models.Model):
+    id = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=15)  # You may adjust the max length based on your requirements
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=255)
+    repassword = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.username
