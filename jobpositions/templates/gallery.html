@@ -46,6 +46,9 @@
                         <a class="nav-link" href="{% url 'category_buttons' %}">Home</a>
                      </li>
                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'institutions' %}">Institutions</a>
+                     </li>
+                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About Us</a>
                      </li>
                      <li class="nav-item">
@@ -68,11 +71,17 @@
          <h1 class="category-title">Choose category</h1>
            <div class="container-medium">
                <div class="category-boxes">
+                  <a class="category-box" href="{% url 'job_category' 'Farming' %}">
+                     <div class="category-content">
+                         <h3>Agriculture</h3>
+                     </div>
+                 </a>
                    <a class="category-box" href="{% url 'job_category' 'IT' %}">
                        <div class="category-content">
                            <h3>IT</h3>
                        </div>
                    </a>
+                  
                    <a class="category-box" href="{% url 'job_category' 'Medical' %}">
                        <div class="category-content">
                            <h3>Medical</h3>

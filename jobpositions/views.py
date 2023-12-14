@@ -39,7 +39,7 @@ def job_position_detail(request, job_position_id):
         skills=[line.strip() for line in skills.split('\n') if line.strip()]
         text_lines = [line.strip() for line in data.split('\n') if line.strip()]
         SkillsYouNeed=perform_translation('Skills You Need', 'en', selected_language)
-        Proceedings=perform_translation('Proceedings', 'en', selected_language)
+        Proceedings=perform_translation('How to become '+job_position.title, 'en', selected_language)
         proceeding=perform_translation(cleaned_proceedings, 'en', selected_language)
         proceeding = [string.replace('\r', '') for string in proceeding.split("\n")]
         
@@ -65,7 +65,7 @@ def job_position_detail(request, job_position_id):
             'description':"Description",
             'skills':skills,
             'SkillsYouNeed':"Skills You Need",
-            'Proceedings':'Proceedings',
+            'Proceedings':'How to become '+job_position.title,
             'proceedings':proceeding
         }
        
