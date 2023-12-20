@@ -213,4 +213,5 @@ from .models import Billing
 
 def billing_detail(request, billing_id):
     billing_data = get_object_or_404(Billing, pk=billing_id)
+   
     return render(request, 'billing_detail.html', {'billing_data': billing_data})

@@ -67,7 +67,7 @@ class Billing(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=20)
     address = models.TextField()
-    billing_date = models.DateField(auto_now_add=True)
+    billing_date = models.CharField(max_length=255)
     billing_cost = models.DecimalField(max_digits=10, decimal_places=2,null=True)
     def __str__(self):
         return self.username

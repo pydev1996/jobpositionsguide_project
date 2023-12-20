@@ -1,26 +1,134 @@
-<!-- your_app/templates/your_app/billing_detail.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billing Detail</title>
-    <!-- Your existing styles here -->
+    <title>Billing Information</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .billing-box {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .billing-box h2 {
+            color: #007bff;
+            font-size: 28px;
+        }
+
+        .billing-box img {
+            max-width: 100px;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 50%;
+        }
+
+        .details {
+    width: 100%;
+}
+
+.detail-item {
+    margin-bottom: 15px;
+}
+
+.label {
+    font-weight: bold;
+    display: block;
+}
+
+.value {
+    margin-top: 5px;
+    display: block;
+}
+
+    </style>
 </head>
 <body>
-
     <header>
-        <h1>INSTITUTOR</h1>
+        <!-- You can add a logo or additional header content here -->
+        Billing Information
     </header>
 
     <div class="container">
-        <h2>{{ billing_data.institution_name }} - Billing Detail</h2>
-        <img src="{{ billing_data.institution_logo.url }}" alt="Institution Logo" style="max-width: 100%;">
-        <!-- Display other billing data fields here -->
-        <div class="logout">
-            <a href="{% url 'institutor_login' %}">Logout</a>
-        </div>
-    </div>
+        
+        <div class="billing-box">
+            <h2>{{ billing_data.institution_name }}</h2>
+            <img src="{{ billing_data.institution_logo.url }}" alt="Institution Logo">
 
+            
+            <div class="details">
+                <div class="detail-item">
+                    <span class="label"><strong>Offered Courses:</strong></span>
+                    <span class="value">{{ billing_data.offered_courses }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label"><strong>Training Type:</strong></span>
+                    <span class="value">{{ billing_data.get_training_type_display }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label"><strong>Email:</strong></span>
+                    <span class="value">{{ billing_data.email }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label"><strong>Phone:</strong></span>
+                    <span class="value">{{ billing_data.phone }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label"><strong>Address:</strong></span>
+                    <span class="value">{{ billing_data.address }}</span>
+                </div>
+                {% if billing_data.billing_cost %}
+                    <div class="detail-item">
+                        <span class="label"><strong>Billing Cost:</strong></span>
+                        <span class="value">{{ billing_data.billing_cost }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label"><strong>Billing date:</strong></span>
+                        <span class="value">{{ billing_data.billing_date }}</span>
+                    </div>
+                {% else %}
+                    <div class="detail-item">
+                        <span class="label"><strong>Billing Cost:</strong></span>
+                        <span class="value">Payment Pending</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label"><strong>Billing date:</strong></span>
+                        <span class="value">{{ billing_data.billing_date }}</span>
+                    </div>
+                {% endif %}
+            </div>
+            
+            
+        
+    </div>
 </body>
 </html>
