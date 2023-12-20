@@ -1,0 +1,26 @@
+<!-- your_app/templates/your_app/billing_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Detail</title>
+    <!-- Your existing styles here -->
+</head>
+<body>
+
+    <header>
+        <h1>INSTITUTOR</h1>
+    </header>
+
+    <div class="container">
+        <h2>{{ billing_data.institution_name }} - Billing Detail</h2>
+        <img src="{{ billing_data.institution_logo.url }}" alt="Institution Logo" style="max-width: 100%;">
+        <!-- Display other billing data fields here -->
+        <div class="logout">
+            <a href="{% url 'institutor_login' %}">Logout</a>
+        </div>
+    </div>
+
+</body>
+</html>

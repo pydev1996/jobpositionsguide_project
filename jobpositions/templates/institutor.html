@@ -1,75 +1,159 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Institutor Home</title>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Career Path</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="static/images/css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="static/images/css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="static/images/css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="static/images/images/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="static/images/css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!-- owl stylesheets --> 
+      <link rel="stylesheet" href="static/images/css/owl.carousel.min.css">
+      <link rel="stylesheet" href="static/images/css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 15px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-        }
-
-        .container {
-            max-width: 800px;
+        .container1 {
+            max-width: 1000px;
             margin: 20px auto;
-            padding: 20px;
             background-color: #fff;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .username {
-            text-align: right;
-            color: #555;
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
         }
 
         .logout {
             text-align: right;
-            margin-top: 10px;
         }
 
         .logout a {
-            color: #4caf50;
+            color: #007bff;
+            margin-top: 1px;
             text-decoration: none;
-            font-weight: bold;
         }
 
-        .logout a:hover {
-            text-decoration: underline;
+        .create a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .billing-box {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .billing-box h2 {
+            color: #007bff;
+        }
+
+        .billing-box img {
+            max-width: 15%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .billing-box a {
+            display: block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .billing-box a:hover {
+            text-decoration: underline; /* Added underline on hover for better visual feedback */
         }
     </style>
 </head>
 <body>
+    <div class="header_section">
+        <div class="container-fluid">
+           <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="logo"><a href="{% url 'category_buttons' %}"><img src="static/images/images/logo1.png"></a></div>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                       <a class="nav-link" href="{% url 'category_buttons' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="{% url 'institutions' %}">Institutions</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="{% url 'gallery' %}">Category</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="{% url 'search' %}"><i class="fa fa-search" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'institutor_login' %}">Logout</a>
+                     </li>
+                 </ul>
+              </div>
+           </nav>
+        </div>
+     </div>
 
-    <header>
-        <h1>INSTITUTOR</h1>
-    </header>
-
-    <div class="container">
+     <div class="banner_section layout_padding">
         <div class="username">
-            Welcome, <strong>{{ institutor_username }}</strong>!
+            Welcome, <strong>{{ institutor_username }}</strong>
         </div>
 
-        <!-- Add your content for the Institutor's home page here -->
+      
 
-        <div class="logout">
-            <a href="{% url 'institutor_login' %}">Logout</a>
-        </div>
+    <div class="create">
+        <a href="{% url 'add_billing' %}">Create post</a>
     </div>
 
+    {% for billing_data in billing_data_list %}
+    <div class="billing-box">
+        <a href="{% url 'billing_detail' billing_data.id %}">
+            <img src="{{ billing_data.institution_logo.url }}" alt="Institution Logo">
+            <h2>{{ billing_data.institution_name }}</h2>
+        </a>
+    </div>
+    {% endfor %}
+</div>
 </body>
 </html>

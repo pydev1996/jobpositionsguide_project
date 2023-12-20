@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Billing Information</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+      
+    </header>
+
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <label for="institution_name">Institution Name:</label>
+            <input type="text" id="institution_name" name="institution_name" value="{{ billing_data.institution_name }}">
+            
+            <label for="institution_logo">Institution Logo:</label>
+            <input type="file" id="institution_logo" name="institution_logo">
+            
+            <label for="offered_courses">Offered Courses:</label>
+            <textarea id="offered_courses" name="offered_courses">{{ billing_data.offered_courses }}</textarea>
+
+            <label for="training_type">Training Type:</label>
+            <select id="training_type" name="training_type">
+                <option value="online" {% if billing_data.training_type == 'online' %}selected{% endif %}>Online</option>
+                <option value="offline" {% if billing_data.training_type == 'offline' %}selected{% endif %}>Offline</option>
+            </select>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ billing_data.email }}">
+
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" value="{{ billing_data.phone }}">
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address">{{ billing_data.address }}</textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

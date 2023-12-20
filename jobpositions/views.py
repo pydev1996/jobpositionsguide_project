@@ -1,6 +1,6 @@
 # jobpositionsguide_project/jobpositions/views.py
 from django.shortcuts import render, get_object_or_404
-from .models import JobPosition
+from .models import JobPosition,Billing
 import re
 import time
 import requests
@@ -154,7 +154,8 @@ def institutor_login(request):
 
 def institutorhomepage(request):
     institutor_username = request.session.get('username')
-    return render(request, 'institutor.html', {'institutor_username': institutor_username})
+    billing_data_list=Billing.objects.filter(username__icontains=institutor_username)
+    return render(request, 'institutor.html', {'institutor_username': institutor_username,'billing_data_list':billing_data_list})
 
 def about(request):
     return render(request, 'about.html')
@@ -190,7 +191,26 @@ def job_positions_by_category(request, category):
     }
     return render(request, 'job_positions_by_category.html', context)
 
+# your_app/views.py
 from django.shortcuts import render, redirect
-from .forms import ContactForm
+from .forms import BillingForm
+
+def add_billing(request):
+    if request.method == 'POST':
+        form = BillingForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('institutorhomepage')  # Redirect to a success page or another view
+    else:
+        form = BillingForm()
+
+    return render(request, 'billing_form.html', {'form': form})
 
 
+# your_app/views.py
+from django.shortcuts import render, get_object_or_404
+from .models import Billing
+
+def billing_detail(request, billing_id):
+    billing_data = get_object_or_404(Billing, pk=billing_id)
+    return render(request, 'billing_detail.html', {'billing_data': billing_data})
