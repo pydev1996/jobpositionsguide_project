@@ -124,7 +124,34 @@
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
+.billing-box {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
 
+        .billing-box h2 {
+            color: #007bff;
+        }
+
+        .billing-box img {
+            max-width: 15%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .billing-box a {
+            display: block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .billing-box a:hover {
+            text-decoration: underline; /* Added underline on hover for better visual feedback */
+        }
     </style>
 </head>
 <body>
@@ -169,7 +196,14 @@
        </div>
 
     <div class="job-positions">
-        <p>If you are an instructor, please <a href="/institutor_login">login here</a>.</p>
+      {% for billing_data in billing_data_list %}
+      <div class="billing-box">
+          <a href="{% url 'billing_detail' billing_data.id %}">
+              <img src="{{ billing_data.institution_logo.url }}" alt="Institution Logo">
+              <h2>{{ billing_data.institution_name }}</h2>
+          </a>
+      </div>
+      {% endfor %}
      </div>
      </div>
      <!-- banner section end -->

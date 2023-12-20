@@ -111,7 +111,8 @@ def category_buttons(request):
     }
     return render(request, 'category_buttons.html', context)
 def institutions(request):
-    return render(request, 'insitutions.html')
+    billing_data_list=Billing.objects.all()
+    return render(request, 'insitutions.html',{'billing_data_list':billing_data_list})
 
 from django.shortcuts import render, redirect
 from .models import Institutor
