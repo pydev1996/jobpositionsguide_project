@@ -74,8 +74,7 @@
 </head>
 <body>
     <header>
-        <!-- You can add a logo or additional header content here -->
-        Billing Information
+    
     </header>
 
     <div class="container">
@@ -106,35 +105,7 @@
                     <span class="label"><strong>Address:</strong></span>
                     <span class="value">{{ billing_data.address }}</span>
                 </div>
-                {% if billing_data.billing_cost %}
-                    <div class="detail-item">
-                        <span class="label"><strong>Billing Cost:</strong></span>
-                        <span class="value">{{ billing_data.billing_cost }}</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label"><strong>Billing date:</strong></span>
-                        <span class="value">{{ billing_data.billing_date }}</span>
-                    </div>
-                {% else %}
-                    <div class="detail-item">
-                        <span class="label"><strong>Billing Cost:</strong></span>
-                        <span class="value">Payment Pending</span>
-                        <!-- <div class="razorpay-embed-btn" data-url="https://pages.razorpay.com/pl_NEtDG2xmjUb8Wd/view" data-text="Pay Now" data-color="#528FF0" data-size="large">
-                            <script>
-                              (function(){
-                                var d=document; var x=!d.getElementById('razorpay-embed-btn-js')
-                                if(x){ var s=d.createElement('script'); s.defer=!0;s.id='razorpay-embed-btn-js';
-                                s.src='https://cdn.razorpay.com/static/embed_btn/bundle.js';d.body.appendChild(s);} else{var rzp=window['__rzp__'];
-                                rzp && rzp.init && rzp.init()}})();
-                            </script>
-                          </div> -->
-                              
-                    </div>
-                    <div class="detail-item">
-                        <span class="label"><strong>Billing date:</strong></span>
-                        <span class="value">{{ billing_data.billing_date }}</span>
-                    </div>
-                {% endif %}
+                
             </div>
             
             

@@ -123,6 +123,39 @@
         .payment a:hover {
             background-color: #0c2461;
         }
+        .job-positions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+.job-box {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-color: #1b035f;
+    border-radius: 5px;
+    padding: 5px;
+    width: calc(23.33% - 20px); /* Adjust the width as needed */
+    box-sizing: border-box;
+    transition: transform 0.2s;
+}
+
+
+.job-box a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+
+.job-box:hover {
+    transform: scale(1.05);
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
     </style>
 </head>
 <body>
@@ -145,7 +178,7 @@
                        <a class="nav-link" href="{% url 'about' %}">About Us</a>
                     </li>
                     <li class="nav-item">
-                       <a class="nav-link" href="{% url 'gallery' %}">Category</a>
+                       <a class="nav-link" href="{% url 'gallery' %}">Job Category</a>
                     </li>
                     <li class="nav-item">
                        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
@@ -154,8 +187,9 @@
                        <a class="nav-link" href="{% url 'search' %}"><i class="fa fa-search" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'institutor_login' %}">Logout</a>
-                     </li>
+                        <a class="nav-link" href="{% url 'logout_view' %}">Logout</a>
+                    </li>
+                    
                  </ul>
               </div>
            </nav>
@@ -191,14 +225,16 @@
         </div> -->
     {%else%}
     {%endif%}
-    {% for billing_data in billing_data_list %}
-    <div class="billing-box">
-        <a href="{% url 'billing_detail' billing_data.id %}">
-            <img src="{{ billing_data.institution_logo.url }}" alt="Institution Logo">
-            <h2>{{ billing_data.institution_name }}</h2>
-        </a>
-    </div>
-    {% endfor %}
+    
+    <div class="job-positions">
+        {% for billing_data in billing_data_list %}
+            <a href="{% url 'billing_detail' billing_data.id %}" class="job-box">
+                <img src="{{ billing_data.institution_logo.url }}" alt="Institution Logo">
+                <h2>{{ billing_data.institution_name }}</h2>
+            </a>
+        
+        {% endfor %}
+       
 </div>
 </body>
 </html>

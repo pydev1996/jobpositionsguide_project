@@ -111,8 +111,20 @@ def category_buttons(request):
     }
     return render(request, 'category_buttons.html', context)
 def institutions(request):
-    billing_data_list=Institution.objects.all()
-    return render(request, 'insitutions.html',{'billing_data_list':billing_data_list})
+    billing_data_list = Billing.objects.filter(payment_status__contains='Paid')
+    billing_data = []
+
+    for billing_data_item in billing_data_list:
+        try:
+            # Use get instead of filter if you expect only one Institution per billing object
+            institution = Institution.objects.get(username__contains=billing_data_item.username)
+            billing_data.append(institution)
+        except Institution.DoesNotExist:
+            # Handle the case where the institution does not exist
+            pass
+    print(billing_data)
+    return render(request, 'insitutions.html', {'billing_data_list': billing_data})
+
 
 from django.shortcuts import render, redirect
 from .models import Institutor
@@ -133,6 +145,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import InstitutorLoginForm
+from django.contrib.auth import logout
 def institutor_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -142,6 +155,7 @@ def institutor_login(request):
             institutor = Institutor.objects.get(username=username)
 
             if institutor.password == password:
+                logout(request)
                 # Password is correct, log in the institutor
                 request.session['username'] = institutor.username  # Store institutor ID in session
                 return redirect('institutorhomepage')
@@ -152,11 +166,20 @@ def institutor_login(request):
             messages.error(request, 'Invalid username or password.')
 
     return render(request, 'login.html')
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def logout_view(request):
+    if request.user.is_authenticated:
+        logout(request)
+    # Redirect to a login page or another appropriate page after logout
+    return redirect('institutor_login')  # Replace 'login_page' with the actual URL name for your login page
 
 def institutorhomepage(request):
     institutor_username = request.session.get('username')
     billing_data_list=Institution.objects.filter(username__icontains=institutor_username)
     payment_status_list=Billing.objects.filter(username__icontains=institutor_username,payment_status__contains='Pending')
+
     return render(request, 'institutor.html', {'institutor_username': institutor_username,'billing_data_list':billing_data_list,'payment_status_list':payment_status_list})
 from datetime import datetime, timedelta
 
@@ -174,8 +197,8 @@ def one_month_later(original_date_str):
 def billing_details(request):
     institutor_username = request.session.get('username')
     billing_data_list=Billing.objects.filter(username__icontains=institutor_username)
-    for i in billing_data_list:
-        print(one_month_later(i.billing_date))
+    # for i in billing_data_list:
+    #     print(one_month_later(i.billing_date))
     return render(request, 'billing_details.html',{'billing_data_list':billing_data_list})
 
 def payment(request):

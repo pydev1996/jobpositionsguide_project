@@ -96,7 +96,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
 }
 
 
@@ -105,8 +105,8 @@
     border: 1px solid #ccc;
     border-color: #1b035f;
     border-radius: 5px;
-    padding: 10px;
-    width: calc(33.33% - 20px); /* Adjust the width as needed */
+    padding: 5px;
+    width: calc(23.33% - 20px); /* Adjust the width as needed */
     box-sizing: border-box;
     transition: transform 0.2s;
 }
@@ -124,34 +124,6 @@
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
-.billing-box {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .billing-box h2 {
-            color: #007bff;
-        }
-
-        .billing-box img {
-            max-width: 15%;
-            height: auto;
-            margin-top: 10px;
-        }
-
-        .billing-box a {
-            display: block;
-            margin-top: 10px;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .billing-box a:hover {
-            text-decoration: underline; /* Added underline on hover for better visual feedback */
-        }
     </style>
 </head>
 <body>
@@ -176,7 +148,7 @@
                      <a class="nav-link" href="{% url 'about' %}">About Us</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="{% url 'gallery' %}">Category</a>
+                     <a class="nav-link" href="{% url 'gallery' %}">Job Category</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
@@ -197,12 +169,11 @@
 
     <div class="job-positions">
       {% for billing_data in billing_data_list %}
-      <div class="billing-box">
-          <a href="{% url 'billing_detail' billing_data.id %}">
+          <a href="{% url 'billing_detail' billing_data.id %}" class="job-box">
               <img src="{{ billing_data.institution_logo.url }}" alt="Institution Logo">
               <h2>{{ billing_data.institution_name }}</h2>
           </a>
-      </div>
+      
       {% endfor %}
      </div>
      </div>
