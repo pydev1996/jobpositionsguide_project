@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Information</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        h1{
+            text-align: center;
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            transition: box-shadow 0.3s ease;
+            color: #495057;
+        }
+
+        .card:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #1e3799;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        p::before {
+            content: '\2022';
+            color: #1e3799;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            margin-right: 5px;
+        }
+
+        .status {
+            font-weight: bold;
+            color: #28a745; /* Green color for 'Payment Status: Paid' */
+        }
+
+        .status.pending {
+            color: #ffc107; /* Yellow color for 'Payment Status: Pending' */
+        }
+
+        .status.failed {
+            color: #dc3545; /* Red color for 'Payment Status: Failed' */
+        }
+    </style>
+</head>
+<body>
+    
+    </div>
+    {% for billing in billing_data_list %}
+    <div class="card">
+        <h1>Billing Information</h1>
+        <h2>ID: {{ billing.id }}</h2>
+        <p>Username: {{ billing.username }}</p>
+        <p>Billing Date: {{ billing.billing_date }}</p>
+        <p>Billing Cost: {{ billing.billing_cost }}</p>
+        <p>Payment Status: <span class="status {% if billing.payment_status == 'Pending' %}pending{% elif billing.payment_status == 'Failed' %}failed{% else %}paid{% endif %}">{{ billing.payment_status }}</span></p>
+        
+    </div>
+    {% endfor %}
+
+    <!-- Your other content goes here -->
+
+</body>
+</html>

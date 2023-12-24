@@ -24,10 +24,10 @@ class InstitutorLoginForm(forms.Form):
 
 # your_app/forms.py
 from django import forms
-from .models import Billing
+from .models import Billing,Institution
 
 class BillingForm(forms.ModelForm):
     class Meta:
-        model = Billing
+        model = Institution
         fields = ['username', 'institution_logo', 'institution_name', 'offered_courses', 'training_type', 'email', 'phone', 'address']
 

@@ -67,6 +67,15 @@
             border-radius: 5px;
             margin-bottom: 20px;
         }
+        .plan a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #d13404;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
 
         .billing-box {
             background-color: #fff;
@@ -95,6 +104,24 @@
 
         .billing-box a:hover {
             text-decoration: underline; /* Added underline on hover for better visual feedback */
+        }
+        .payment {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .payment a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #1e3799;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .payment a:hover {
+            background-color: #0c2461;
         }
     </style>
 </head>
@@ -145,7 +172,25 @@
     <div class="create">
         <a href="{% url 'add_billing' %}">Create post</a>
     </div>
-
+    <div class="plan">
+        <a href="{% url 'billing_details' %}">See Plan details</a>
+    </div>
+    {%if payment_status_list%}
+        <h2>Your payment is Pending .Please click below button for payment</h2>
+        <div class='payment'>
+        <a href="{% url 'payment' %}">Payment</a>
+        </div>
+        <!-- <div class="razorpay-embed-btn" data-url="https://pages.razorpay.com/pl_NEtDG2xmjUb8Wd/view" data-text="Pay Now" data-color="#528FF0" data-size="large">
+            <script>
+            (function(){
+                var d=document; var x=!d.getElementById('razorpay-embed-btn-js')
+                if(x){ var s=d.createElement('script'); s.defer=!0;s.id='razorpay-embed-btn-js';
+                s.src='https://cdn.razorpay.com/static/embed_btn/bundle.js';d.body.appendChild(s);} else{var rzp=window['__rzp__'];
+                rzp && rzp.init && rzp.init()}})();
+            </script>
+        </div> -->
+    {%else%}
+    {%endif%}
     {% for billing_data in billing_data_list %}
     <div class="billing-box">
         <a href="{% url 'billing_detail' billing_data.id %}">

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3799;
+        }
+
+        div {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #1e3799;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        p::before {
+            content: '\2022'; /* Add bullet point before each paragraph */
+            color: #1e3799;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        p::after {
+            content: '\00a0'; /* Add non-breaking space after each paragraph */
+        }
+
+        p:last-child::after {
+            content: ''; /* Remove the non-breaking space after the last paragraph */
+        }
+    </style>
+</head>
+<body>
+    <h1>Payment Information</h1>
+    <div>
+        <h2>Monthly Subscription: Rs.499/month</h2>
+    </div>
+    <div>
+        <h2>QR Code</h2>
+        <img src="/static/images/qrcode.jpeg" alt="QR Code">
+    
+        <h2>UPI ID</h2>
+        <p>Your UPI ID: 6301708990397@paytm</p>
+    
+        <h2>Bank Details</h2>
+        <p>Account Number: 5945852486</p>
+        <p>Name: Naveen Chikile</p>
+        <p>IFSC Code: KKBK0007472</p>
+        <p>Bank Name: Kotak Mahindra Bank</p>
+        <h2>Note: Please mention your name while doing payment</h2>
+    </div>
+
+    <p>Please make the payment using the provided information.</p>
+
+    <!-- Add any additional styling or scripting as needed -->
+
+</body>
+</html>

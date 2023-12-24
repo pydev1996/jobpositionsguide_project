@@ -1,6 +1,6 @@
 # jobpositionsguide_project/jobpositions/views.py
 from django.shortcuts import render, get_object_or_404
-from .models import JobPosition,Billing
+from .models import JobPosition,Billing,Institution
 import re
 import time
 import requests
@@ -111,7 +111,7 @@ def category_buttons(request):
     }
     return render(request, 'category_buttons.html', context)
 def institutions(request):
-    billing_data_list=Billing.objects.all()
+    billing_data_list=Institution.objects.all()
     return render(request, 'insitutions.html',{'billing_data_list':billing_data_list})
 
 from django.shortcuts import render, redirect
@@ -155,9 +155,31 @@ def institutor_login(request):
 
 def institutorhomepage(request):
     institutor_username = request.session.get('username')
-    billing_data_list=Billing.objects.filter(username__icontains=institutor_username)
-    return render(request, 'institutor.html', {'institutor_username': institutor_username,'billing_data_list':billing_data_list})
+    billing_data_list=Institution.objects.filter(username__icontains=institutor_username)
+    payment_status_list=Billing.objects.filter(username__icontains=institutor_username,payment_status__contains='Pending')
+    return render(request, 'institutor.html', {'institutor_username': institutor_username,'billing_data_list':billing_data_list,'payment_status_list':payment_status_list})
+from datetime import datetime, timedelta
 
+def one_month_later(original_date_str):
+    # Convert the original date string to a datetime object
+    original_date = datetime.strptime(original_date_str, "%Y-%m-%d")
+
+    # Calculate one month later
+    one_month_later_date = original_date + timedelta(days=30)
+
+    # Format the result as a string
+    one_month_later_date_str = one_month_later_date.strftime("%Y-%m-%d")
+
+    return one_month_later_date_str
+def billing_details(request):
+    institutor_username = request.session.get('username')
+    billing_data_list=Billing.objects.filter(username__icontains=institutor_username)
+    for i in billing_data_list:
+        print(one_month_later(i.billing_date))
+    return render(request, 'billing_details.html',{'billing_data_list':billing_data_list})
+
+def payment(request):
+    return render(request, 'payment.html')
 def about(request):
     return render(request, 'about.html')
 def gallery(request):
@@ -213,6 +235,6 @@ from django.shortcuts import render, get_object_or_404
 from .models import Billing
 
 def billing_detail(request, billing_id):
-    billing_data = get_object_or_404(Billing, pk=billing_id)
+    billing_data = get_object_or_404(Institution, pk=billing_id)
    
     return render(request, 'billing_detail.html', {'billing_data': billing_data})
