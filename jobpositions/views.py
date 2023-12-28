@@ -61,6 +61,7 @@ def job_position_detail(request, job_position_id):
         proceeding = [string.replace('\r', '') for string in cleaned_proceedings.split("\n")]
         context = {
             'job_position':job_position,
+            'job_position_title':job_position.title.upper(),
             'cleaned_text':text_lines,
             'description':"Description",
             'skills':skills,
