@@ -243,10 +243,13 @@ from django.shortcuts import render, redirect
 from .forms import BillingForm
 
 def add_billing(request):
+    username = request.session.get('username')
     if request.method == 'POST':
         form = BillingForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            new_billing = Billing(username=username, payment_status='Pending')
+            new_billing.save()
             return redirect('institutorhomepage')  # Redirect to a success page or another view
     else:
         form = BillingForm()
