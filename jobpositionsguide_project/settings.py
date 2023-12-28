@@ -129,12 +129,22 @@ AUTHENTICATION_BACKENDS = [
 #STATIC_URL = '/static/'
 import os
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'jobpositionsguide_project','static'),
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+# settings.py
+
+# Static files (CSS, JavaScript, images)
+# STATIC_URL = '/static/'
+
+# # Additional locations of static files
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'jobpositionsguide_project', 'static'),
+# ]
+
+# # The absolute path to the directory where collectstatic will collect static files for deployment.
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 
