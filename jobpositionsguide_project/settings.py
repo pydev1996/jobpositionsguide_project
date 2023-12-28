@@ -128,7 +128,7 @@ AUTHENTICATION_BACKENDS = [
 
 #STATIC_URL = '/static/'
 import os
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'jobpositionsguide_project','static'),
