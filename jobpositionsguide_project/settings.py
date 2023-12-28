@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import memcache
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fh19&ww=wj@(^(11bkom8kb2sr6=61_qry16%_hb1hguuahp)$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
+ALLOWED_HOSTS = ["*"]
 
 WSGI_APPLICATION = 'vercel_app.wsgi.app'
 # Application definition
@@ -85,7 +86,8 @@ DATABASES = {
     }
 }
 
-# settings.py
+# DATABASES['default']=dj_database_url.parse('postgres://careerpath_user:F2AQ98JeKe2E8RCivbjgSZkMwkYJHwjE@dpg-cm6ghamd3nmc73aq3hj0-a.oregon-postgres.render.com/careerpath')
+# # settings.py
 AUTH_USER_MODEL = 'auth.User'
 
 
