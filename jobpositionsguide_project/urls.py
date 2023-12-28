@@ -10,5 +10,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('jobpositions.urls')),
 ]
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns # new
-urlpatterns += staticfiles_urlpatterns() # new
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
