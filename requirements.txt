@@ -11,6 +11,6 @@ django-push-notifications==3.0.0
 django-rest-framework==0.1.0
 django-widget-tweaks==1.4.12
 djangorestframework==3.14.0
-dlib==19.24.0
+
 
 
