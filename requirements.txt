@@ -222,12 +222,7 @@ Keras-Applications==1.0.8
 keras-nightly==2.5.0.dev2021032900
 Keras-Preprocessing==1.1.2
 keyboard==0.13.5
-Kivy==2.1.0
-kivy-deps.angle==0.3.3
-kivy-deps.glew==0.3.1
-kivy-deps.sdl2==0.4.5
-Kivy-Garden==0.1.5
-kivymd==1.1.1
+
 kiwisolver==1.4.4
 koalas==1.8.2
 kombu==5.3.1
