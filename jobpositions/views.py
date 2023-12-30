@@ -172,65 +172,6 @@ def institutor_login(request):
 
 
     return render(request, 'login.html')
-from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-
-
-
-
-
-def password_reset(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-       
-        user = Institutor.objects.get(email=email)
-        # print(user)
-        # # Generate token and create reset link
-        # token = custom_token_generator.make_token(user)
-
-        
-        # uid = urlsafe_base64_encode(force_bytes(user.pk))
-        # reset_link = request.build_absolute_uri(f'/reset-password/{uid}/{token}/')
-
-        # # Send reset link via email
-        # subject = 'Password Reset Request'
-        # message = render_to_string('reset_password_email.html', {
-        #     'reset_link': reset_link,
-        # })
-        # send_mail(subject, message, 'newch1996@gmail.com', [email])
-        print("mail sent")
-            # You can add a success message here if needed
-        
-            
-    return render(request, 'password_reset_form.html')
-from django.utils.http import urlsafe_base64_decode
-from django.utils.encoding import force_str
-from django.contrib.auth.models import User
-from django.contrib.auth.tokens import default_token_generator
-from django.shortcuts import render
-
-def reset_password(request, uidb64, token):
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-        if default_token_generator.check_token(user, token):
-            # Token is valid, allow the user to reset their password
-            # This can be a separate form to set a new password
-            # Update the password and handle success/failure accordingly
-            # Ensure to update the session auth hash after changing the password:
-            # update_session_auth_hash(request, user)
-            pass
-        else:
-            # Token is invalid
-            pass
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-        # Handle errors
-        pass
-    return render(request, 'reset_password.html')
 
 from django.contrib.auth import logout
 from django.shortcuts import redirect
