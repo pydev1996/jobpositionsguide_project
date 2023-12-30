@@ -17,7 +17,7 @@ urlpatterns = [
     path('gallery/', views.gallery, name='gallery'),
     path('contact/', views.contact, name='contact'),
     path('search/', views.search, name='search'),
-    path('password_reset/', views.password_reset, name='password_reset'),
+ 
     path('category/<str:category>/', views.job_positions_by_category, name='job_category'),
     # Add more URL patterns as needed
     path('job_positions/<int:job_position_id>/', views.job_position_detail, name='job_position_detail'),
