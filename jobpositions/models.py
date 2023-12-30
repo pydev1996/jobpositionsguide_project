@@ -45,7 +45,7 @@ class ContactMessage(models.Model):
     def __str__(self):
         return self.name
 
-
+from django.utils import timezone
 class Institutor(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255)
@@ -53,6 +53,7 @@ class Institutor(models.Model):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255)
     repassword = models.CharField(max_length=255)
+    
 
     def __str__(self):
         return self.username

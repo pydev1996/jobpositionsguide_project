@@ -70,22 +70,23 @@
     
     <form method="post" action="{% url 'institutor_login' %}">
         <h2>Institutor Login</h2>
-
+    
         {% csrf_token %}
         <label for="username">Username:</label>
         <input type="text" name="username" required>
-
+    
         <label for="password">Password:</label>
         <input type="password" name="password" required>
-
+    
         <button type="submit">Login</button>
-
+    
         <p>Don't have an account? <a href="{% url 'institutor_signup' %}">Sign up here</a>.</p>
-
+    
+        <a href="{% url 'password_reset' %}">Forgot Password?</a> <!-- Link to password reset -->
+    
         <a href="{% url 'category_buttons' %}">Back</a>
-
     </form>
-    <script>
+        <script>
         {% if messages %}
             {% for message in messages %}
                 displayErrorMessage();
