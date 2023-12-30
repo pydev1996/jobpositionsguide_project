@@ -59,6 +59,11 @@
             background-color: #45a049;
         }
     </style>
+    <script>
+        function displayErrorMessage() {
+            alert("Invalid username or password. Please try again.");
+        }
+    </script>
 </head>
 <body>
 
@@ -80,6 +85,12 @@
         <a href="{% url 'category_buttons' %}">Back</a>
 
     </form>
-
+    <script>
+        {% if messages %}
+            {% for message in messages %}
+                displayErrorMessage();
+            {% endfor %}
+        {% endif %}
+    </script>
 </body>
 </html>
