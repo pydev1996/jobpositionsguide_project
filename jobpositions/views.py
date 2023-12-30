@@ -147,6 +147,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import InstitutorLoginForm
 from django.contrib.auth import logout
+from easygui import msgbox
 def institutor_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -162,9 +163,12 @@ def institutor_login(request):
                 return redirect('institutorhomepage')
             else:
                 messages.error(request, 'Invalid username or password.')
+                msgbox('Invalid username or password.','Login Error')
 
         except Institutor.DoesNotExist:
             messages.error(request, 'Invalid username or password.')
+            msgbox('Invalid username or password.','Login Error')
+
 
     return render(request, 'login.html')
 from django.contrib.auth import logout
