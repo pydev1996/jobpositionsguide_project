@@ -163,11 +163,9 @@ def institutor_login(request):
                 return redirect('institutorhomepage')
             else:
                 messages.error(request, 'Invalid username or password.')
-                msgbox('Invalid username or password.','Login Error')
 
         except Institutor.DoesNotExist:
             messages.error(request, 'Invalid username or password.')
-            msgbox('Invalid username or password.','Login Error')
 
 
     return render(request, 'login.html')
