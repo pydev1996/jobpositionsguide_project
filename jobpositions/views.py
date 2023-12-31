@@ -255,7 +255,7 @@ def add_billing(request):
         if form.is_valid():
             form.save()
             print("saved")
-            billingdata=get_object_or_404(Billing, pk=username)
+            billingdata=get_object_or_404(Billing, username=username)
             if not billingdata:
                 new_billing = Billing(username=username, payment_status='Pending')
                 new_billing.save()
