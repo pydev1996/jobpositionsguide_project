@@ -254,8 +254,10 @@ def add_billing(request):
         form = BillingForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            new_billing = Billing(username=username, payment_status='Pending')
-            new_billing.save()
+            billingdata=get_object_or_404(Billing, pk=username)
+            if not billingdata:
+                new_billing = Billing(username=username, payment_status='Pending')
+                new_billing.save()
             return redirect('institutorhomepage')  # Redirect to a success page or another view
     else:
         form = BillingForm()
