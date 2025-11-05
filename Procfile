@@ -1,1 +1,1 @@
-web: gunicorn jobpositionsguide.wsgi:application
+web: gunicorn jobpositionsguide_project.wsgi:application
