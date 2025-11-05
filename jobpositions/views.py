@@ -147,7 +147,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import InstitutorLoginForm
 from django.contrib.auth import logout
-from easygui import msgbox
 from django.utils import timezone
 def institutor_login(request):
     if request.method == 'POST':
