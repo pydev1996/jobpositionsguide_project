@@ -85,7 +85,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default']=dj_database_url.parse('postgres://careerpath_user:F2AQ98JeKe2E8RCivbjgSZkMwkYJHwjE@dpg-cm6ghamd3nmc73aq3hj0-a.oregon-postgres.render.com/careerpath')
+#DATABASES['default']=dj_database_url.parse('postgres://careerpath_user:F2AQ98JeKe2E8RCivbjgSZkMwkYJHwjE@dpg-cm6ghamd3nmc73aq3hj0-a.oregon-postgres.render.com/careerpath')
 # # settings.py
 AUTH_USER_MODEL = 'auth.User'
 
